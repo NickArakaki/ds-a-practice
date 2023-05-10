@@ -24,8 +24,6 @@ def asteroidCollision(asteriods):
         resolved = False
 
         while not resolved:
-            print(stack)
-            print(asteroid)
             # if there is nothing in the stack, or if previous asteroids are moving in same direction
             if not len(stack) or (asteroid > 0 and stack[-1] > 0) or (asteroid < 0 and stack[-1] < 0) or (asteroid > 0 and stack[-1] < 0):
                 stack.append(asteroid)
@@ -41,8 +39,8 @@ def asteroidCollision(asteriods):
     # return the asteroid stack
     return stack
 
-# print(asteroidCollision([5,10,-5])) # [5, 10]
-# print(asteroidCollision([8,-8])) # []
-# print(asteroidCollision([10,2,-5])) # [10]
-# print(asteroidCollision([3, 2,-5])) # [-5]
+print(asteroidCollision([5,10,-5])) # [5, 10]
+print(asteroidCollision([8,-8])) # []
+print(asteroidCollision([10,2,-5])) # [10]
+print(asteroidCollision([3, 2,-5])) # [-5]
 print(asteroidCollision([-2,-1,1,2])) # [-2,-1,1,2]
