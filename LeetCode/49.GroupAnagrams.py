@@ -15,7 +15,17 @@ Constraints:
 """
 
 def groupAnagrams(strs):
-    pass
+    res = {}
+
+    for s in strs:
+        key = "".join(sorted(s))
+
+        if key not in res:
+            res[key] = [s]
+        else:
+            res[key].append(s)
+
+    return res.values()
 
 print(groupAnagrams(["eat","tea","tan","ate","nat","bat"])) # [["bat"],["nat","tan"],["ate","eat","tea"]]
 print(groupAnagrams([""])) # [[""]]
