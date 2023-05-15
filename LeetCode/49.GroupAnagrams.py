@@ -14,16 +14,31 @@ Constraints:
     strs[i] consists of lowercase English letters.
 """
 
+# def groupAnagrams(strs):
+#     res = {}
+
+#     for s in strs:
+#         key = "".join(sorted(s))
+
+#         if key not in res:
+#             res[key] = [s]
+#         else:
+#             res[key].append(s)
+
+#     return res.values()
+
 def groupAnagrams(strs):
     res = {}
 
     for s in strs:
-        key = "".join(sorted(s))
+        count = [0] * 26
+        for char in s:
+            count[ord(char) - ord("a")] += 1
 
-        if key not in res:
-            res[key] = [s]
+        if tuple(count) not in res:
+            res[tuple(count)] = [s]
         else:
-            res[key].append(s)
+            res[tuple(count)].append(s)
 
     return res.values()
 
