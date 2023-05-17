@@ -25,20 +25,14 @@ def isValidSudoku(board):
             value = board[row][col]
 
             if value != ".":
-                if row in rows and value in rows[row]:
+                box_coordinates = (row // 3, col // 3)
+
+                if (row in rows and value in rows[row]) or (col in cols and value in cols[col]) or (box_coordinates in boxes and value in boxes[box_coordinates]):
                     return False
                 else:
                     rows[row].add(value)
-
-                if col in cols and value in cols[col]:
-                    return False
-                else:
                     cols[col].add(value)
-
-                if (row // 3, col // 3) in boxes and value in boxes[(row // 3, col // 3)]:
-                    return False
-                else:
-                    boxes[(row // 3, col // 3)].add(value)
+                    boxes[box_coordinates].add(value)
 
     return True
 
