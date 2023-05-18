@@ -17,7 +17,21 @@ Constraints:
 """
 
 def sortColors(nums):
-    pass
+    buckets = [0] * 3
+
+    for num in nums: # fill buckets
+        buckets[num] += 1
+
+    # go through buckets and replace values in order
+    index = 0
+    for color, value in enumerate(buckets):
+        while value > 0:
+            nums[index] = color
+            value -= 1
+            index += 1
+
+    return nums
+
 
 print(sortColors([2,0,2,1,1,0])) # [0,0,1,1,2,2]
 print(sortColors([2,0,1])) # [0, 1, 2]
