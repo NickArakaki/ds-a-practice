@@ -24,10 +24,10 @@ def sortColors(nums):
 
     # go through buckets and replace values in order
     index = 0
-    for color, value in enumerate(buckets):
-        while value > 0:
+    for color, num_appearances in enumerate(buckets):
+        while num_appearances > 0:
             nums[index] = color
-            value -= 1
+            num_appearances -= 1
             index += 1
 
     return nums
