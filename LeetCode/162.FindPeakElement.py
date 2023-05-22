@@ -23,17 +23,12 @@ def findPeakElement(nums:list[int]) -> int:
 
     while l <= r:
         mid = l + (r - l) // 2
-        # edge case: if mid is 0
-        if mid == 0 and nums[0] > nums[1]: return 0
-        # edge case: if mid is end of nums
-        if mid == len(nums) - 1 and nums[mid] > nums[mid - 1]: return mid
-
-        if nums[mid] > nums[mid - 1] and nums[mid] > nums[mid + 1]:
-            return mid
-        elif nums[mid] < nums[mid - 1]:
+        if mid > 0 and nums[mid] < nums[mid - 1]: # search left
             r = mid - 1
-        elif nums[mid] < nums[mid + 1]:
+        elif mid < len(nums) - 1 and nums[mid] < nums[mid + 1]: # search right
             l = mid + 1
+        else:
+            return mid
 
 print(findPeakElement([1,2,3,1])) # 2
 print(findPeakElement([1,2,1,3,5,6,4])) # 5

@@ -17,21 +17,25 @@ nums is sorted in ascending order.
 """
 
 
+# def search(nums: list[int], target: int) -> int:
+#     l, r = 0, len(nums) - 1
+
+#     while l <= r:
+#         mid = l + (r - l) // 2 # protects from integer overflow
+
+#         if nums[mid] == target:  # found target
+#             return mid
+#         elif target < nums[mid]:  # search left
+#             r = mid - 1
+#         else:  # search right
+#             l = mid + 1
+
+#     return -1  # target not found
+
+# recursive solution
 def search(nums: list[int], target: int) -> int:
-    l, r = 0, len(nums) - 1
 
-    while l <= r:
-        mid = r + l // 2
-
-        if nums[mid] == target:  # found target
-            return mid
-        elif target < nums[mid]:  # search left
-            r = mid - 1
-        else:  # search right
-            l = mid + 1
-
-    return -1  # target not found
-
+    pass
 
 print(search([-1, 0, 3, 5, 9, 12], 9))  # 4
 print(search([-1, 0, 3, 5, 9, 12], 2))  # -1
