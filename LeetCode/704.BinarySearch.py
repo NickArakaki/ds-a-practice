@@ -21,7 +21,7 @@ def search(nums: list[int], target: int) -> int:
     l, r = 0, len(nums) - 1
 
     while l <= r:
-        mid = r - l // 2
+        mid = r + l // 2
 
         if nums[mid] == target:  # found target
             return mid
