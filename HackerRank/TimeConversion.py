@@ -9,13 +9,13 @@ def timeConversion(s):
     components = s.split(":")
 
     if components[0] == "12" and components[-1].endswith("AM"):
-        components[0] = 0
+        components[0] = "00"
     elif components[0] != "12" and components[-1].endswith("PM"):
-        components[0] = int(components[0]) + 12
+        components[0] = str(int(components[0]) + 12)
 
     return f"{components[0]}:{components[1]}:{components[2][:2]}"
 
 
-# print(timeConversion("07:05:45PM")) # 19:05:45
-print(timeConversion("12:05:45AM")) # 00:05:45
+print(timeConversion("07:05:45PM")) # 19:05:45
+print(timeConversion("12:40:22AM")) # 00:40:22
 # print(timeConversion("07:05:45PM")) # 19:05:45
