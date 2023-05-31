@@ -1,19 +1,16 @@
 def migratoryBirds(arr):
-    arr.sort()
-    curr_count = 1
-    max_count = float("-inf")
-    min_el = None
+    buckets = [0 for i in range(5)]
+    for el in arr:
+        buckets[el - 1] += 1
 
-    for i in range(1, len(arr)):
-        if arr[i - 1] == arr[i]:
-            curr_count += 1
-        else:
-            if curr_count > max_count:
-                min_el = arr[i - 1]
-                max_count = curr_count
-            curr_count = 1
+    max_freq_el = None
+    max_freq = float('-inf')
+    for i, bucket in enumerate(buckets):
+        if bucket > max_freq:
+            max_freq_el = i + 1
+            max_freq = bucket
 
-    return min_el
+    return max_freq_el
 
 
 print(migratoryBirds([1,2,3,4,5,4,3,2,1,3,4])) # 3
