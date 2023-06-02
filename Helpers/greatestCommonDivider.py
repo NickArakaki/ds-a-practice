@@ -1,9 +1,17 @@
-def greatestCommonDivider(a: int, b: int) -> int:
-    if b == 0:
-        return a
+# def greatestCommonDivider(a: int, b: int) -> int:
+#     if b == 0:
+#         return a
 
-    a, b = b, a % b
-    return greatestCommonDivider(a, b)
+#     a, b = b, a % b
+#     return greatestCommonDivider(a, b)
+
+# iterative GCD
+def greatestCommonDivider(a: int, b: int) -> int:
+    while b != 0:
+        temp = b
+        b = a % b
+        a = temp
+    return a
 
 def getGCDList(nums: list[int]) -> int:
     res = nums[0]
@@ -12,5 +20,5 @@ def getGCDList(nums: list[int]) -> int:
 
     return res
 
-print(greatestCommonDivider(2,4)) # 2
-print(getGCDList([3, 5, 9])) # 4
+print(greatestCommonDivider(2000, 500)) # 2
+print(getGCDList([3])) # 1
