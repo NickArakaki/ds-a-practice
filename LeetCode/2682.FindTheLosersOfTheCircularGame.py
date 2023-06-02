@@ -36,8 +36,20 @@ Constraints:
 """
 
 def circularGameLosers(n: int, k:int) -> list[int]:
-    pass
+    current_player = 1
+    winners = set()
+    turn_number = 1
 
+    while current_player not in winners:
+        winners.add(current_player)
+        num_steps = turn_number * k
+        next_player = (((current_player - 1) + num_steps) % n) + 1
+        current_player = next_player
+        turn_number += 1
+
+    return [i for i in range(1, n + 1) if i not in winners]
 
 print(circularGameLosers(5, 2)) # [4,5]
 print(circularGameLosers(4, 4)) # [2,3,4]
+print(circularGameLosers(1, 1)) # []
+print(circularGameLosers(2, 1)) # []
