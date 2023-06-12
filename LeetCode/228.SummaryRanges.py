@@ -15,12 +15,28 @@ Each range [a,b] in the list should be output as:
 """
 
 def summaryRanges(nums: list[int]) -> list[str]:
-        # sliding window
-        # initialize l and r pointers to 0
-        # initialize a start and end pointer to first element in nums
-        # iterate through nums while r < length of nums
-            # if
-    pass
+        if not len(nums): return []
+
+        l = r = 0
+        res = []
+        while r < len(nums) - 1:
+            if nums[r + 1] != nums[r] + 1:
+                if l == r:
+                      res.append(f"{nums[l]}")
+                else:
+                      res.append(f"{nums[l]}->{nums[r]}")
+                r += 1
+                l = r
+            else:
+                  r += 1
+        if l == r:
+              res.append(f"{nums[l]}")
+        else:
+              res.append(f"{nums[l]}->{nums[r]}")
+
+        return res
 
 print(summaryRanges([0,1,2,4,5,7])) # ["0->2","4->5","7"]
+print(summaryRanges([0,1,2,4,5,7, 9])) # ["0->2","4->5","7","9"]
 print(summaryRanges([0,2,3,4,6,8,9])) # ["0","2->4","6","8->9"]
+print(summaryRanges([])) # []
