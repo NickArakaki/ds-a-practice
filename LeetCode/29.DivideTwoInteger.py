@@ -12,6 +12,18 @@ Note: Assume we are dealing with an environment that could only store integers w
 greater than 231 - 1, then return 231 - 1, and if the quotient is strictly less than -231, then return -231.
 """
 
+# def divide(dividend: int, divisor: int) -> int:
+#     ans = 0
+#     val = 0
+#     while val <= abs(dividend):
+#         val += abs(divisor)
+#         ans += 1
+#     ans -= 1
+
+#     if (divisor < 0 and dividend > 0) or (divisor > 0 and dividend < 0):
+#         ans = 0 - ans
+#     return ans
+
 def divide(dividend: int, divisor: int) -> int:
     ans = 0
     val = 0
