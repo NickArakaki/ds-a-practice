@@ -15,7 +15,7 @@ greater than 231 - 1, then return 231 - 1, and if the quotient is strictly less 
 def divide(dividend: int, divisor: int) -> int:
     ans = 0
     val = 0
-    while val < abs(dividend):
+    while val <= abs(dividend):
         val += abs(divisor)
         ans += 1
     ans -= 1
@@ -26,3 +26,5 @@ def divide(dividend: int, divisor: int) -> int:
 
 print(divide(10, 3)) # 3
 print(divide(7, -3)) # -2
+print(divide(0, -3)) # 0
+print(divide(1, 1)) # 1
