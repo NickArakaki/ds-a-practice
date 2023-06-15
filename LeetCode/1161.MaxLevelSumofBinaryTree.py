@@ -25,7 +25,7 @@ def maxLevelSum(root) -> int:
         queue = deque()
         queue.append([root])
         # bft to get sum of each level, if current sum > global max update global vars
-        while level < len(queue):
+        while len(queue):
             curr_level = queue.popleft()
             curr_sum = 0
             children = []
@@ -47,6 +47,6 @@ def maxLevelSum(root) -> int:
             level += 1
 
         # return level
-        return level
+        return min_level
 
 print(maxLevelSum(root_node)) # 2
