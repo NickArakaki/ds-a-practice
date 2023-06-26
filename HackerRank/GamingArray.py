@@ -16,9 +16,10 @@ def gamingArray(arr):
     arr_map = _map_array(arr)
     turn = 0
 
-    while arr:
-        max_idx = arr_map[len(arr) - 1]
-        arr = arr[:max_idx]
+    i = len(arr) - 1
+    while i >= 0:
+        max_idx = arr_map[i]
+        i = max_idx - 1
         turn += 1
 
     return "BOB" if turn % 2 == 1 else "ANDY"
