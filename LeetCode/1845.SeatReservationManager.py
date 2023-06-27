@@ -8,15 +8,46 @@ int reserve() Fetches the smallest-numbered unreserved seat, reserves it, and re
 void unreserve(int seatNumber) Unreserves the seat with the given seatNumber.
 """
 
+import heapq
+
 class SeatManager:
 
     def __init__(self, n: int):
-        pass
+        self.seats = [i + 1 for i in range(n)]
+        heapq.heapify(self.seats)
 
 
     def reserve(self) -> int:
-        pass
+        return heapq.heappop(self.seats)
 
 
     def unreserve(self, seatNumber: int) -> None:
-        pass
+        heapq.heappush(self.seats, seatNumber)
+
+
+seatTest = SeatManager(5)
+print(seatTest.seats) # [1,2,3,4,5]
+
+seatTest.reserve()
+print(seatTest.seats) # [2,3,4,5]
+
+seatTest.reserve()
+print(seatTest.seats) # [3,4,5]
+
+seatTest.unreserve(2)
+print(seatTest.seats) # [2,3,4,5]
+
+seatTest.reserve()
+print(seatTest.seats) # [3,4,5]
+
+seatTest.reserve()
+print(seatTest.seats) # [4,5]
+
+seatTest.reserve()
+print(seatTest.seats) # [5]
+
+seatTest.reserve()
+print(seatTest.seats) # []
+
+seatTest.unreserve(5)
+print(seatTest.seats) # [5]
