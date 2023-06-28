@@ -25,15 +25,104 @@ Constraints:
 At most 2 * 105 calls will be made to get and put.
 
 """
+from collections import deque
+class Node:
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
+        self.prev = None
+        self.next = None
+
+    def __repr__(self) -> str:
+        return f"key = {self.key}, val = {self.val}"
+
+
+class Double_Linked_List:
+    def __init__(self):
+        self.head = Node(None, None)
+        self.tail = Node(None, None)
+
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+        self.length = 0
+
+
+    def remove(self, node):
+        prev = node.prev
+        next = node.next
+
+        prev.next = next
+        next.prev = prev
+
+        self.length -= 1
+
+
+    def push(self, node):
+        prev = self.tail.prev
+        next = self.tail
+
+        node.next = next
+        node.prev = prev
+
+        next.prev = node
+        prev.next = node
+
+        self.length += 1
+
+        return node
+
+
+    def print_nodes(self):
+        curr_node = self.head
+        while curr_node:
+            print(curr_node)
+            curr_node = curr_node.next
+
+
 
 class LRUCache:
     def __init__(self, capacity: int):
-        pass
+        self.list = Double_Linked_List()
+        self.cache = {}
+        self.capacity = capacity
 
 
     def get(self, key:int) -> int:
-        pass
+        # if key in cache
+        if key in self.cache:
+            node = self.cache[key]
+
+            # move node to end of list
+            self.list.remove(node)
+            self.list.push(node)
+            return node.val
+        else:
+            return -1
 
 
     def put(self, key: int, value: int) -> None:
-        pass
+        if key in self.cache:
+            node = self.cache[key]
+            self.list.remove(node)
+            self.list.push(node)
+            node.val = value
+        else:
+            if self.list.length == self.capacity:
+                head_node = self.list.head.next
+                self.list.remove(head_node)
+                del self.cache[head_node.key]
+            new_node = Node(key, value)
+            self.cache[key] = new_node
+            self.list.push(new_node)
+
+
+cache = LRUCache(2)
+cache.put(1,1)
+cache.put(1,4)
+cache.put(2,2)
+print(cache.cache) # dict of node obj
+print(cache.get(1)) # 1
+cache.put(3,3) # should remove 2
+print(cache.cache) # dict of node obj
+print(cache.get(2)) # -1
