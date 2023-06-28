@@ -12,14 +12,14 @@ def generate_parenthesis(n: int) -> list[str]:
 
         # decision to add open
             # if num open < n and not the last element being added
-        if num_open < n and num_closed <= num_open:
+        if num_open < n:
             combo.append("(")
             _backtrack(num_open + 1, num_closed, combo)
             combo.pop()
 
         # decision to add closed
             # only if num open > num closed and num closed < n
-        if num_open > num_closed and num_closed < n:
+        if num_open > num_closed:
             combo.append(")")
             _backtrack(num_open, num_closed + 1, combo)
             combo.pop()
