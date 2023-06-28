@@ -12,33 +12,27 @@ combinations that sum up to target is less than 150 combinations for the given i
 
 def combination_sum(candidates: list[int], target: int) -> list[list[int]]:
     ans = []
-    candidates.sort()
 
-    def _backtrack(combo):
-        if sum(combo) == target:
-            combo.sort()
-            if combo not in ans:
-                ans.append(combo[::])
+    def _backtrack(i, combo, total):
+        if total == target:
+            ans.append(combo.copy())
             return
-        if sum(combo) > target:
+        if i >= len(candidates) or total > target:
             return
 
-        i = 0
-        while i < len(candidates):
+        # include candidates[i]
+        combo.append(candidates[i])
+        _backtrack(i, combo, total + candidates[i])
+        combo.pop()
 
-            # decision to add
-            combo.append(candidates[i])
-            _backtrack(combo)
-            combo.pop()
-            i += 1
-            # decision to not add
-            # _backtrack(combo)
+        # exclude candidates[i]
+        _backtrack(i + 1, combo, total)
 
-    _backtrack([])
+    _backtrack(0, [], 0)
     return ans
 
 
-# print(combination_sum([2,3,6,7], 7)) # [[2,2,3],[7]]
+print(combination_sum([2,3,6,7], 7)) # [[2,2,3],[7]]
 # print(combination_sum([2,3,5], 8)) # [[2,2,2,2],[2,3,3],[3,5]]
 # print(combination_sum([2], 1)) # []
 print(combination_sum([7,3,2], 18)) # [[7,7,2,2],[7,3,3,3,2],[7,3,2,2,2,2],[3,3,3,3,3,3],[3,3,3,3,2,2,2],[3,3,2,2,2,2,2,2],[2,2,2,2,2,2,2,2,2]]
