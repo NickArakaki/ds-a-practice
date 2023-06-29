@@ -11,24 +11,27 @@ Return the maximum area of an island in grid. If there is no island, return 0.
 
 def max_area_of_island(grid: list[list[int]]) -> int:
 
-    def _dfs(row, col, curr_island):
+    def _dfs(row, col):
         if not _in_bounds(row, col):
-            return
+            return 0
 
         pos = (row, col)
         if pos in visited:
-            return
+            return 0
 
         if grid[row][col] == 0:
-            return
+            return 0
+
+        visited.add(pos)
+        curr_island = 1
 
         directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
         for direction in directions:
             new_row = row + direction[0]
             new_col = col + direction[1]
-            _dfs(new_row, new_col, curr_island)
+            curr_island += _dfs(new_row, new_col)
 
-        return
+        return curr_island
 
 
     def _in_bounds(row, col):
@@ -42,7 +45,8 @@ def max_area_of_island(grid: list[list[int]]) -> int:
 
     for row in range(len(grid)):
         for col in range(len(grid[0])):
-            curr_area = _dfs(row, col, 0)
+            curr_area = _dfs(row, col)
+            max_island = max(max_island, curr_area)
 
     return max_island
 
