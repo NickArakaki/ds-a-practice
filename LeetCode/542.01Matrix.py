@@ -39,7 +39,6 @@ def update_matrix(mat: list[list[int]]) -> list[list[int]]:
                             queue.append((new_row, new_col, distance + 1))
                             visited.add((new_row, new_col))
 
-
     return mat
 
 
