@@ -58,10 +58,6 @@ class LinkedList:
         self.length += 1
 
 
-    def reverse(self):
-        pass
-
-
     def print_list(self):
         curr_node = self.head
         while curr_node.next:
