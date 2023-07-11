@@ -9,14 +9,14 @@ You must write an algorithm with O(log n) runtime complexity.
 def search_insert(nums: list[int], target: int) -> int:
     l, r = 0, len(nums) - 1
 
-    while l <= r:
+    if target > nums[-1]: return r + 1
+
+    while l < r:
         mid = (l + r) // 2
-        if nums[mid] == target:
-            return mid
-        elif nums[mid] > target:
-            r = mid - 1
-        else:
+        if nums[mid] < target:
             l = mid + 1
+        else:
+            r = mid
 
     return l
 
