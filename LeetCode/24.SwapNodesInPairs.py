@@ -16,6 +16,7 @@ class ListNode():
 
 def swap_pairs(head):
     dummy_node = ListNode(None)
+    dummy_node.next = head
     prev_node = dummy_node
     curr_node = head
 
