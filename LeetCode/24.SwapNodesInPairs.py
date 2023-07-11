@@ -20,6 +20,16 @@ def swap_pairs(head):
     curr_node = head
 
     while curr_node and curr_node.next:
-        pass
+        next_node = curr_node.next
+        temp = next_node.next
+
+        # swap and reorder next pointers
+        next_node.next = curr_node
+        curr_node.next = temp
+        prev_node.next = next_node
+
+        # update prev_node and curr_node pointers
+        prev_node = curr_node
+        curr_node = curr_node.next
 
     return dummy_node.next
