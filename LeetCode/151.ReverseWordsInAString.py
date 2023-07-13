@@ -30,8 +30,14 @@ Constraints:
 """
 
 def reverseWords(s: str) -> str:
-    pass
+    words = s.split(" ")
+    reversed_words = []
+    for i in range(len(words) - 1, -1, -1):
+        if words[i]:
+            reversed_words.append(words[i])
 
-print(reverseWords("the sky is blue")) # "blue is sky the"
-print(reverseWords("  hello world  ")) # "world hello"
-print(reverseWords("a good   example")) # "example good a"
+    return " ".join(reversed_words)
+
+print(reverseWords("the sky is blue") == "blue is sky the") # "blue is sky the"
+print(reverseWords("  hello world  ") == "world hello") # "world hello"
+print(reverseWords("a good   example") == "example good a") # "example good a"
