@@ -21,11 +21,11 @@ def frequencySort(s):
     freq_list = list(frequency_map.items())
     freq_list.sort(key=lambda tup: tup[1], reverse=True)
 
-    res = []
+    res = ""
     for char, freq in freq_list:
-        res.append(char * freq)
+        res += char * freq
 
-    return "".join(res)
+    return res
 
 print(frequencySort("tree")) # "eert"
 print(frequencySort("cccaaa")) # "aaaccc"
