@@ -24,6 +24,24 @@ class SinglyLinkedList:
         self.length += 1
 
 
+    def remove(self, node):
+        dummy_node = SinglyLinkedListNode()
+        dummy_node.next = self.head
+
+        prev_node = dummy_node
+        curr_node = self.head
+        while curr_node:
+            if curr_node == node:
+                prev_node.next = curr_node.next
+                break
+
+        if curr_node == self.head:
+            self.head = curr_node.next
+        if curr_node == self.tail:
+            self.tail = prev_node
+
+
+
     def print_list(self):
         curr_node = self.head
         while curr_node:
