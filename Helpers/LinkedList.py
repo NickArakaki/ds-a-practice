@@ -16,3 +16,16 @@ class SinglyLinkedList:
         self.head = node
         self.tail = node
         self.length = 1
+
+
+    def append(self, node):
+        self.tail.next = node
+        self.tail = self.tail.next
+        self.length += 1
+
+
+    def print_list(self):
+        curr_node = self.head
+        while curr_node:
+            print(curr_node.val)
+            curr_node = curr_node.next
