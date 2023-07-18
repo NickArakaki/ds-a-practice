@@ -19,6 +19,8 @@ Constraints:
     senate[i] is either 'R' or 'D'.
 
 """
+from collections import deque
+
 def predictPartyVictory(senate):
     R = deque(i for i, x in enumerate(senate) if x == "R")
     D = deque(i for i, x in enumerate(senate) if x == "D")
