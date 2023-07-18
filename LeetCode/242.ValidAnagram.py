@@ -30,11 +30,11 @@ def isAnagram(s: str, t: str) -> bool:
         else:
             t_chars[t[i]] += 1
 
-    for char in s_chars:
-        if (char not in t_chars) or (s_chars[char] != t_chars[char]):
-            return False
+    # for char in s_chars:
+    #     if (char not in t_chars) or (s_chars[char] != t_chars[char]):
+    #         return False
 
-    return True
+    return s_chars == t_chars
 
 print(isAnagram("anagram", "nagaram")) # True
 print(isAnagram("rat", "car")) # False
