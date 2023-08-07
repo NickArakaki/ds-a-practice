@@ -20,11 +20,11 @@ def reverse_vowels(s: str) -> str:
         #     l += 1
         #     r -=1
 
-        if chars[l] not in vowels:
+        if chars[l].lower() not in vowels:
             l += 1
-        if chars[r] not in vowels:
+        if chars[r].lower() not in vowels:
             r -= 1
-        if chars[l] in vowels and chars[r] in vowels:
+        if chars[l].lower() in vowels and chars[r].lower() in vowels:
             chars[l], chars[r] = chars[r], chars[l]
             l += 1
             r -= 1
@@ -36,3 +36,4 @@ def reverse_vowels(s: str) -> str:
 print(reverse_vowels("hello") == "holle")
 print(reverse_vowels("leetcode") == "leotcede")
 print(reverse_vowels("cdf") == "cdf")
+print(reverse_vowels("aA") == "Aa")
