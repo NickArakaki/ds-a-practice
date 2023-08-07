@@ -11,7 +11,7 @@ You must write a solution in O(log(m * n)) time complexity.
 def search_matrix(matrix: list[list[int]], target: int) -> bool:
     l1, r1 = 0, len(matrix) - 1
 
-    while l1 < r1:
+    while l1 <= r1:
         mid1 = (l1 + r1) // 2
         curr_list = matrix[mid1]
 
@@ -19,7 +19,7 @@ def search_matrix(matrix: list[list[int]], target: int) -> bool:
 
             l2, r2 = 0, len(curr_list) - 1
 
-            while l2 < r2:
+            while l2 <= r2:
                 mid2 = (l2 + r2) // 2
                 if curr_list[mid2] == target:
                     return True
