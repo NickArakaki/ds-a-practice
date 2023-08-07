@@ -10,9 +10,9 @@ def reverse_vowels(s: str) -> str:
     l, r = 0, len(chars) - 1
 
     while l < r:
-        while chars[l] not in vowels:
+        while l < len(chars) and chars[l] not in vowels:
             l += 1
-        while chars[r] not in vowels:
+        while r >= 0 and chars[r] not in vowels:
             r -=1
 
         if l < r:
