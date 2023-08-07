@@ -9,7 +9,26 @@ You must write a solution in O(log(m * n)) time complexity.
 """
 
 def search_matrix(matrix: list[list[int]], target: int) -> bool:
-    pass
+    # bin search through first level of lists
+    # bin search within the list that could contain target
+        # return true if found
+    # return false if not found after bin searches
+    l1, r1 = 0, len(matrix) - 1
+    while l1 < r1: # outer bin search
+        mid = (l1 + r1) // 2
+        curr_list = matrix[mid]
+        if curr_list[0] <= target and curr_list[-1] >= target:
+            # do inner bin search
+            l2, r2 = 0, len(curr_list) - 1
+            while l2 < r2:
+                mid = (l2 + r2) // 2
+                if curr_list[mid] == target:
+                    return True
+                elif target < curr_list[mid]: # search left
+                    r2 = mid
+                else:
+                    l2 = mid + 1
+    return False
 
 
 print(search_matrix([[1,3,5,7],[10,11,16,20],[23,30,34,60]], 3) == True)
