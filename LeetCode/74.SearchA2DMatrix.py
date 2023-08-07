@@ -15,19 +15,23 @@ def search_matrix(matrix: list[list[int]], target: int) -> bool:
     # return false if not found after bin searches
     l1, r1 = 0, len(matrix) - 1
     while l1 < r1: # outer bin search
-        mid = (l1 + r1) // 2
-        curr_list = matrix[mid]
+        mid1 = (l1 + r1) // 2
+        curr_list = matrix[mid1]
         if curr_list[0] <= target and curr_list[-1] >= target:
             # do inner bin search
             l2, r2 = 0, len(curr_list) - 1
             while l2 < r2:
-                mid = (l2 + r2) // 2
-                if curr_list[mid] == target:
+                mid2 = (l2 + r2) // 2
+                if curr_list[mid2] == target:
                     return True
-                elif target < curr_list[mid]: # search left
-                    r2 = mid
+                elif target < curr_list[mid2]: # search left
+                    r2 = mid2
                 else:
-                    l2 = mid + 1
+                    l2 = mid2 + 1
+        elif target < curr_list[-1]: # search left
+            r1 = mid1
+        else:
+            l1 = mid1 + 1
     return False
 
 
