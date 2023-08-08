@@ -17,11 +17,17 @@ def search(nums: list[int], target: int) -> int:
 
         if target == num:
             return mid
-        elif target < num and target > nums[r]: # search left
-            r = mid - 1
-        elif target < num and target < nums[r]: # search right
-            l = mid + 1
 
+        if nums[l] <= nums[mid]:
+            if target > nums[mid] or target < nums[l]: # search right
+                l = mid + 1
+            else:
+                r = mid - 1
+        else:
+            if target < nums[mid] or target > nums[r]: # search left
+                r = mid - 1
+            else:
+                l = mid + 1
 
     return -1
 
