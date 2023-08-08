@@ -9,14 +9,17 @@ def gcd_of_strings(str1: str, str2: str) -> str:
     if str1 + str2 != str2 + str1:
         return ""
 
+    if len(str1) < len(str2):
+        str1, str2 = str2, str1
+
+    return str1[:gcd(len(str1), len(str2))]
+
 
 def gcd(a, b):
     while b:
         a, b = b, a % b
     return a
 
-print(gcd(10, 4))
-
-# print(gcd_of_strings('ABCABC', 'ABC') == 'ABC')
-# print(gcd_of_strings('ABABAB', 'ABAB') == 'AB')
-# print(gcd_of_strings('LEET', 'CODE') == '')
+print(gcd_of_strings('ABCABC', 'ABC') == 'ABC')
+print(gcd_of_strings('ABABAB', 'ABAB') == 'AB')
+print(gcd_of_strings('LEET', 'CODE') == '')
