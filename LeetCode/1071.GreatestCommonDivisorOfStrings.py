@@ -6,8 +6,17 @@ Given two strings str1 and str2, return the largest string x such that x divides
 """
 
 def gcd_of_strings(str1: str, str2: str) -> str:
-    pass
+    if str1 + str2 != str2 + str1:
+        return ""
 
-print(gcd_of_strings('ABCABC', 'ABC') == 'ABC')
-print(gcd_of_strings('ABABAB', 'ABAB') == 'AB')
-print(gcd_of_strings('LEET', 'CODE') == '')
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+print(gcd(10, 4))
+
+# print(gcd_of_strings('ABCABC', 'ABC') == 'ABC')
+# print(gcd_of_strings('ABABAB', 'ABAB') == 'AB')
+# print(gcd_of_strings('LEET', 'CODE') == '')
