@@ -12,10 +12,14 @@ The answer is guaranteed to fit into a signed 32-bit integer.
 
 def change(amount: int, coins: list[int]) -> int:
     memo = set()
+    res = []
+    total = 0
 
-    def _backtrack(total: int, change: list[int], coins: list[int]) -> int:
-        pass
+    def _backtrack(change: list[int], coins: list[int]) -> int:
+        if total == amount:
+            res.append(change)
 
+        for _
     pass
 
 
