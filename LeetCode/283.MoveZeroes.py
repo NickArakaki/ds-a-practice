@@ -6,15 +6,13 @@ Note that you must do this in-place without making a copy of the array.
 """
 
 def move_zeroes(nums: list[int]) -> list[int]:
-    r = 0
-    for l in range(len(nums)):
-        while r < len(nums) and nums[r] == 0:
-            r += 1
+    l = 0
 
-        if nums[l] == 0 and l < r and r < len(nums):
+    for r in range(len(nums)):
+        if nums[r] != 0:
             nums[l], nums[r] = nums[r], nums[l]
-            r += 1
-    print(nums)
+            l += 1
+
     return nums
 
 print(move_zeroes([0,1,0,3,12]) == [1,3,12,0,0])
