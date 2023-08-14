@@ -19,7 +19,6 @@ def change(amount: int, coins: list[int]) -> int:
         if total == amount:
             res.append(change)
 
-        for _
     pass
 
 
