@@ -8,17 +8,22 @@ Can you solve it without sorting?
 
 import heapq
 
+# def find_kth_largest(nums: list[int], k: int) -> int:
+#     # heapify nums
+#     heap = nums[:k]
+#     heapq.heapify(heap)
+
+#     for num in nums:
+#         if num > heap[0]:
+#             heapq.heappop(heap)
+#             heapq.heappush(heap, num)
+
+#     return heap[0]
+
+
 def find_kth_largest(nums: list[int], k: int) -> int:
-    # heapify nums
-    heap = nums[:k]
-    heapq.heapify(heap)
-
-    for num in nums:
-        if num > heap[0]:
-            heapq.heappop(heap)
-            heapq.heappush(heap, num)
-
-    return heap[0]
+    nums.sort()
+    return nums[-k]
 
 
 print(find_kth_largest([3,2,1,5,6,4], 2) == 5)
