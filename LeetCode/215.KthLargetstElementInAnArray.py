@@ -14,7 +14,6 @@ def find_kth_largest(nums: list[int], k: int) -> int:
     heapq.heapify(heap)
 
     for num in nums[k:]:
-        print(num)
         if num > heap[0]:
             heapq.heappop(heap)
             heapq.heappush(heap, num)
@@ -27,8 +26,8 @@ def find_kth_largest(nums: list[int], k: int) -> int:
 #     return nums[-k]
 
 
-# print(find_kth_largest([3,2,1,5,6,4], 2) == 5)
-# print(find_kth_largest([3,2,3,1,2,4,5,5,6], 4) == 4)
-# print(find_kth_largest([2,1], 2) == 1)
+print(find_kth_largest([3,2,1,5,6,4], 2) == 5)
+print(find_kth_largest([3,2,3,1,2,4,5,5,6], 4) == 4)
+print(find_kth_largest([2,1], 2) == 1)
 print(find_kth_largest([-1,2,0], 2) == 0)
-# print(find_kth_largest([1], 1) == 1)
+print(find_kth_largest([1], 1) == 1)
