@@ -32,7 +32,7 @@ def max_sliding_window(nums: list[int], k: int) -> list[int]:
     # repeat until end of nums
     while r < len(nums):
         # remove values from queue if the previous val is < nums[r]
-        while queue and nums[queue[0]] < nums[r]:
+        while queue and nums[queue[-1]] < nums[r]:
             queue.pop()
         # add r to queue
         queue.append(r)
@@ -45,9 +45,6 @@ def max_sliding_window(nums: list[int], k: int) -> list[int]:
         if r + 1 >= k:
             res.append(nums[queue[0]])
             l += 1
-        # if r + 1 >= k
-            # append to res
-            # increment l
 
         r += 1
 
