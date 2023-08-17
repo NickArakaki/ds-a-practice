@@ -11,28 +11,49 @@ but the subarray [1,3,5] is not.
 Return true if the array has at least one valid partition. Otherwise, return false.
 """
 
+# def valid_partition(nums: list[int]) -> bool:
+#     cache = {}
+
+#     def dfs(i):
+#         if i == len(nums):
+#             return True
+
+#         if i in cache:
+#             return cache[i]
+
+#         res = False
+
+#         if i < len(nums) - 1 and nums[i] == nums[i + 1]:
+#             res = dfs(i + 2)
+#         if i < len(nums) - 2:
+#             if (nums[i] == nums[i + 1] == nums[i + 2]) or (nums[i] + 1 == nums[i + 1] == nums[i + 2] -1):
+#                 res = res or dfs(i + 3)
+
+#         cache[i] = res
+#         return res
+
+#     return dfs(0)
+
+
+# DP solution
 def valid_partition(nums: list[int]) -> bool:
-    cache = {}
+    two = nums[-1] == nums[-2]
+    if len(nums) == 2:
+        return two
 
-    def dfs(i):
-        if i == len(nums):
-            return True
+    three = (nums[-1] == nums[-2] == nums[-3]) or (nums[-3] + 1 == nums[-2] == nums[-1] - 1)
 
-        if i in cache:
-            return cache[i]
+    dp = [three,two,False]
 
-        res = False
+    for i in range(len(nums) - 4, -1, -1):
+        curr = (nums[i] == nums[i + 1]) and dp[1]
+        curr = curr or (nums[i] + 1 == nums[i + 1] == nums[i + 2] - 1 or
+                        nums[i] == nums[i + 1] == nums[i + 2] and
+                        dp[2])
 
-        if i < len(nums) - 1 and nums[i] == nums[i + 1]:
-            res = dfs(i + 2)
-        if i < len(nums) - 2:
-            if (nums[i] == nums[i + 1] == nums[i + 2]) or (nums[i] + 1 == nums[i + 1] == nums[i + 2] -1):
-                res = res or dfs(i + 3)
+        dp = [curr, dp[0], dp[1]]
 
-        cache[i] = res
-        return res
-
-    return dfs(0)
+    return dp[0]
 
 
 print(valid_partition([4,4,4,5,6]) == True)
