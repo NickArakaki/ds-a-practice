@@ -47,8 +47,8 @@ def valid_partition(nums: list[int]) -> bool:
 
     for i in range(len(nums) - 4, -1, -1):
         curr = (nums[i] == nums[i + 1]) and dp[1]
-        curr = curr or (nums[i] + 1 == nums[i + 1] == nums[i + 2] - 1 or
-                        nums[i] == nums[i + 1] == nums[i + 2] and
+        curr = curr or ((nums[i] + 1 == nums[i + 1] == nums[i + 2] - 1 or
+                        nums[i] == nums[i + 1] == nums[i + 2]) and
                         dp[2])
 
         dp = [curr, dp[0], dp[1]]
@@ -58,3 +58,4 @@ def valid_partition(nums: list[int]) -> bool:
 
 print(valid_partition([4,4,4,5,6]) == True)
 print(valid_partition([1,1,1,2]) == False)
+print(valid_partition([993335,993336,993337,993338,993339,993340,993341]) == False)
