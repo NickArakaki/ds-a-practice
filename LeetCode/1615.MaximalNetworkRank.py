@@ -21,18 +21,16 @@ def maximal_network_rank(n: int, roads: list[list[int]]) -> int:
         graph[city_1].add(city_2)
         graph[city_2].add(city_1)
 
-    cities = list(graph.keys())
+    cities = graph.keys()
     rank = 0
-    for i in range(len(cities)):
-        for j in range(len(cities)):
-            # for city_1, city_2 in combinations(graph.keys(), 2):
-            if i == j:
+    for city1 in cities:
+        for city2 in cities:
+            if city1 == city2:
                 continue
-            city_1 = cities[i]
-            city_2 = cities[j]
-            has_connection = 1 if city_1 in graph[city_2] else 0
-            city1_connections = len(graph[city_1])
-            city2_connections = len(graph[city_2])
+            # for city_1, city_2 in combinations(graph.keys(), 2):
+            has_connection = 1 if city1 in graph[city2] else 0
+            city1_connections = len(graph[city1])
+            city2_connections = len(graph[city2])
 
             rank = max(rank, city1_connections +
                        city2_connections - has_connection)
