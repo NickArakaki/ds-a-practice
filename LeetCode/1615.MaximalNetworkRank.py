@@ -10,9 +10,34 @@ The maximal network rank of the infrastructure is the maximum network rank of al
 Given the integer n and the array roads, return the maximal network rank of the entire infrastructure.
 """
 
+from collections import defaultdict
+from itertools import combinations
+
 
 def maximal_network_rank(n: int, roads: list[list[int]]) -> int:
-    pass
+    graph = defaultdict(set)
+
+    for city_1, city_2 in roads:
+        graph[city_1].add(city_2)
+        graph[city_2].add(city_1)
+
+    cities = list(graph.keys())
+    rank = 0
+    for i in range(len(cities)):
+        for j in range(len(cities)):
+            # for city_1, city_2 in combinations(graph.keys(), 2):
+            if i == j:
+                continue
+            city_1 = cities[i]
+            city_2 = cities[j]
+            has_connection = 1 if city_1 in graph[city_2] else 0
+            city1_connections = len(graph[city_1])
+            city2_connections = len(graph[city_2])
+
+            rank = max(rank, city1_connections +
+                       city2_connections - has_connection)
+
+    return rank
 
 
 print(maximal_network_rank(4, [[0, 1], [0, 3], [1, 2], [1, 3]]) == 4)
