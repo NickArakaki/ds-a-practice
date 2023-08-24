@@ -7,7 +7,17 @@ Return an array containing all the safe nodes of the graph. The answer should be
 """
 
 def safe_states(graph: list[list[int]]) -> list[int]:
-    pass
+    safe = {}
+
+    def _is_safe():
+        pass
+
+    res = []
+    for node in range(len(graph)):
+        if _is_safe(node):
+            res.append(node)
+
+    return res
 
 
 print(safe_states([[1,2],[2,3],[5],[0],[5],[],[]]) == [2,4,5,6])
