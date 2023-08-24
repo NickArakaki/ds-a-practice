@@ -9,8 +9,18 @@ Return an array containing all the safe nodes of the graph. The answer should be
 def safe_states(graph: list[list[int]]) -> list[int]:
     safe = {}
 
-    def _is_safe():
-        pass
+    def _is_safe(node):
+        if node in safe:
+            return safe[node]
+
+        safe[node] = False
+
+        for nei in graph[node]:
+            if not _is_safe(nei):
+                return safe[node]
+
+        safe[node] = True
+        return safe[node]
 
     res = []
     for node in range(len(graph)):
