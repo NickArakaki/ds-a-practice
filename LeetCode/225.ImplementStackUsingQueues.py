@@ -20,41 +20,55 @@ from collections import deque
 
 class MyStack:
     def __init__(self):
-        stack = []
+        self.stack = deque()
 
 
     def push(self, x: int) -> None:
         """
         pushes element x to top of the stack
         """
-        pass
+        self.stack.append(x)
 
 
     def pop(self) -> int:
         """
         Removes the element on the top of the stack
         """
-        pass
+        i = 0
+        while i < len(self.stack) - 1:
+            el = self.stack.popleft()
+            self.stack.append(el)
+            i += 1
+        return self.stack.popleft()
 
 
     def top(self) -> int:
         """
         Returns the top element on the top of the stack
         """
-        pass
+        last_el = None
+        for el in self.stack:
+            last_el = el
+        return last_el
+
 
 
     def empty(self) -> bool:
         """
         Returns True if stack is empty, False otherwise
         """
-        pass
+        return len(self.stack) == 0
 
 
 # Test Cases
 obj = MyStack()
 print(obj.push(1))
 print(obj.push(2))
+print(obj)
 print(obj.top())
+print(obj.pop())
+print(obj.empty())
+print(obj.pop())
+print(obj.empty())
 print(obj.pop())
 print(obj.empty())
