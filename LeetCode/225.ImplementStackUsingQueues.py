@@ -16,22 +16,45 @@ Depending on your language, the queue may not be supported natively.
 You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.
 """
 
+from collections import deque
+
 class MyStack:
     def __init__(self):
-        pass
+        stack = []
 
 
     def push(self, x: int) -> None:
+        """
+        pushes element x to top of the stack
+        """
         pass
 
 
     def pop(self) -> int:
+        """
+        Removes the element on the top of the stack
+        """
         pass
 
 
     def top(self) -> int:
+        """
+        Returns the top element on the top of the stack
+        """
         pass
 
 
     def empty(self) -> bool:
+        """
+        Returns True if stack is empty, False otherwise
+        """
         pass
+
+
+# Test Cases
+obj = MyStack()
+print(obj.push(1))
+print(obj.push(2))
+print(obj.top())
+print(obj.pop())
+print(obj.empty())
