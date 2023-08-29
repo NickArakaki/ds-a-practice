@@ -16,7 +16,37 @@ customers consists only of characters "Y" and "N"
 """
 
 def best_closing_time(customers: str) -> int:
-    pass
+    # track current penalty
+    # track min penalty
+    curr_pen = min_pen = 0
+    # track min closing time
+    min_close = len(customers)
+
+    # iterate through customers (get penalty for closing time at len(customers))
+        # if no customers increment penalty
+    for customer in customers:
+        if customer == "N":
+            min_pen += 1
+            curr_pen += 1
+
+    # iterate through customers in reverse
+    for hour in range(len(customers) - 1, -1, -1):
+        customer = customers[hour]
+        # if there are customers increment penalty
+        if customer == "Y":
+            curr_pen += 1
+        # else decrement penalty
+        else:
+            curr_pen -= 1
+        # if curr penalty <= min penalty
+        if curr_pen <= min_pen:
+            # reassign min penalty to curr penalty
+            min_pen = curr_pen
+            # reassign min closing time to curr index
+            min_close = hour
+
+    # return min closing time
+    return min_close
 
 
 print(best_closing_time("YYNY")) # 2
