@@ -6,7 +6,35 @@ A mapping of digits to letters (just like on the telephone buttons) is given bel
 """
 
 def letter_combinations(digits: str) -> list[str]:
-    pass
+    phone_map = {
+        "2": "abc",
+        "3": "def",
+        "4": "ghi",
+        "5": "jkl",
+        "6": "mno",
+        "7": "pqrs",
+        "8": "tuv",
+        "9": "wxyz"
+    }
+
+    res = []
+
+    def _backtrack(i, cur_comb):
+        if len(cur_comb) == len(digits):
+            res.append("".join(cur_comb))
+            return
+
+        for c in phone_map[digits[i]]:
+            cur_comb.append(c)
+            _backtrack(i + 1, cur_comb)
+            cur_comb.pop()
+
+    if digits:
+        _backtrack(0, [])
+
+    return res
+
+
 
 
 print(letter_combinations("23") == ["ad","ae","af","bd","be","bf","cd","ce","cf"])
