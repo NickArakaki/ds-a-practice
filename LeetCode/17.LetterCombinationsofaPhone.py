@@ -53,22 +53,19 @@ def letter_combinations(digits: str) -> list[str]:
     index = [0 for _ in range(len(digits) + 1)]
     res = []
 
-    while index[0] < 1:
+    while index[-1] < 1:
         cur_comb = []
         for i, digit in enumerate(digits):
             cur_comb.append(phone_map[digit][index[i]])
-            index[i + 1] += 1
+        index[0] += 1
         res.append("".join(cur_comb))
-        print(cur_comb)
 
         # resolve overflows
-        for i in range(len(index) - 1, 0, -1):
+        for i in range(len(digits)):
             idx = index[i]
-            overflow = idx // len(phone_map[digits[i - 1]])
-            index[i - 1] += overflow
-            index[i] = idx % len(phone_map[digits[i - 1]])
-
-        print(index)
+            overflow = idx // len(phone_map[digits[i]])
+            index[i + 1] += overflow
+            index[i] = idx % len(phone_map[digits[i]])
 
     return res
 
@@ -77,6 +74,6 @@ def letter_combinations(digits: str) -> list[str]:
 
 
 
-print(letter_combinations("23") == ["ad","ae","af","bd","be","bf","cd","ce","cf"])
-# print(letter_combinations("") == [])
-# print(letter_combinations("2") == ["a", "b", "c"])
+print(letter_combinations("23") == ["ad", "bd", "cd", "ae", "be", "ce", "af", "bf", "cf"]) #['ad', 'bd', 'cd', 'ae', 'be', 'ce', 'af', 'bf', 'cf']
+print(letter_combinations("") == [])
+print(letter_combinations("2") == ["a", "b", "c"])
