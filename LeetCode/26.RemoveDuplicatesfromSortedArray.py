@@ -19,7 +19,14 @@ def remove_duplicates(nums: list[int]) -> int:
     # iterate thru nums with l and r pointers
         # if nums[l] in seen_nums:
             # move r pointer to first number not in nums or until end of nums
+            # if r >= len(nums):
+                # break
+            # elif nums[r] not in seen_nums
+                # swap nums[l] and nums[r]
+        # add nums[l] to seen_nums
+        # increment l and r pointers
     #
+    # return length of seen_nums set
 
 print(remove_duplicates([0,0,1,1,1,2,2,3,3,4]) == [0,1,2,3,4])
 print(remove_duplicates([1,1,2]) == [1,2])
