@@ -65,7 +65,7 @@ def letter_combinations(digits: str) -> list[str]:
             idx = index[i]
             overflow = idx // len(phone_map[digits[i]])
             index[i + 1] += overflow
-            index[i] = idx % len(phone_map[digits[i]])
+            index[i] %= len(phone_map[digits[i]])
 
     return res
 
