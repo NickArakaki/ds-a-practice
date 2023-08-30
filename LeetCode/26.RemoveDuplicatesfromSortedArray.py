@@ -14,17 +14,12 @@ Return k.
 def remove_duplicates(nums: list[int]) -> int:
     # init seen set
     seen_nums = set()
-    # init res list
-    res = []
 
-    for num in nums:
-        if num not in seen_nums:
-            seen_nums.add(num)
-            res.append(num)
-    # iterate thru nums
-        # if num not in seen
-            # add to both seen and res
-    return res
+    # l and r pointers
+    # iterate thru nums with l and r pointers
+        # if nums[l] in seen_nums:
+            # move r pointer to first number not in nums or until end of nums
+    #
 
 print(remove_duplicates([0,0,1,1,1,2,2,3,3,4]) == [0,1,2,3,4])
 print(remove_duplicates([1,1,2]) == [1,2])
