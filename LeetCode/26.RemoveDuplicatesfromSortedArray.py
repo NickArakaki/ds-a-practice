@@ -12,8 +12,19 @@ Return k.
 """
 
 def remove_duplicates(nums: list[int]) -> int:
-    num_set = set(nums)
-    return len(num_set)
+    # init seen set
+    seen_nums = set()
+    # init res list
+    res = []
 
-print(remove_duplicates([0,0,1,1,1,2,2,3,3,4]) == 5)
-print(remove_duplicates([1,1,2]) == 2)
+    for num in nums:
+        if num not in seen_nums:
+            seen_nums.add(num)
+            res.append(num)
+    # iterate thru nums
+        # if num not in seen
+            # add to both seen and res
+    return res
+
+print(remove_duplicates([0,0,1,1,1,2,2,3,3,4]) == [0,1,2,3,4])
+print(remove_duplicates([1,1,2]) == [1,2])
