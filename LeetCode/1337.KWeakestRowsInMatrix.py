@@ -50,8 +50,10 @@ def k_weakest_rows(mat: list[list[int]], k: int) -> list[int]:
 
     res = []
     # iterate thru keys (0 -> n)
-    for i in range(len(mat[0])):
+    for i in range(len(mat[0]) + 1):
         rows = cache[i]
+        print(i, rows)
+        print("----------------------------------------------------------")
         for row in rows:
             if len(res) == k:
                 return res
@@ -59,17 +61,21 @@ def k_weakest_rows(mat: list[list[int]], k: int) -> list[int]:
     return res
 
 
-print(k_weakest_rows([
-    [1,1,0,0,0],
-    [1,1,1,1,0],
-    [1,0,0,0,0],
-    [1,1,0,0,0],
-    [1,1,1,1,1]
- ], 3) == [2, 0, 3])
+# print(k_weakest_rows([
+#     [1,1,0,0,0],
+#     [1,1,1,1,0],
+#     [1,0,0,0,0],
+#     [1,1,0,0,0],
+#     [1,1,1,1,1]
+#  ], 3) == [2, 0, 3])
 
-print(k_weakest_rows([
-    [1,0,0,0],
-    [1,1,1,1],
-    [1,0,0,0],
-    [1,0,0,0]
- ], 2) == [0,2])
+# print(k_weakest_rows([
+#     [1,0,0,0],
+#     [1,1,1,1],
+#     [1,0,0,0],
+#     [1,0,0,0]
+#  ], 2) == [0,2])
+
+# print(k_weakest_rows([[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1]], 1) == [0])
+
+print(k_weakest_rows([[1,0],[1,0],[1,0],[1,1]], 4) == [0])
