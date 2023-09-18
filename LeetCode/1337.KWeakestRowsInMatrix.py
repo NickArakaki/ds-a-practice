@@ -18,7 +18,9 @@ def k_weakest_rows(mat: list[list[int]], k: int) -> list[int]:
         # while l < r
             # calc mid
             # if el at mid == 0 and el before mid is valid and not 0, we found the first 0
-            # elif el at mid == 1 and is the last el in list, there are no 0s
+            # elif el at mid == 0 and el before is also 0, search left half
+            # else search right
+        # if we we exit loop
 
     # use a dict to cache helper func results
         # key = num 1s
