@@ -11,6 +11,22 @@ Return the indices of the k weakest rows in the matrix ordered from weakest to s
 """
 
 def k_weakest_rows(mat: list[list[int]], k: int) -> list[int]:
+    # helper func to get num 1s in row using modified bin search
+        # takes in list
+        # returns int (idx of first 0)
+        # init l and r pointers
+        # while l < r
+            # calc mid
+            # if el at mid == 0 and el before mid is valid and not 0, we found the first 0
+            # elif el at mid == 1 and is the last el in list, there are no 0s
+
+    # use a dict to cache helper func results
+        # key = num 1s
+        # val = list of indices
+    # iterate thru keys (0 -> n)
+        # iterate thru list @ key
+            # add el to res list until len of res == k
+    # return res
     pass
 
 
