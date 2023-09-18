@@ -20,9 +20,9 @@ def k_weakest_rows(mat: list[list[int]], k: int) -> list[int]:
             returns int (idx of first 0)
         """
         # init l and r pointers
-        l, r = 0, len(row)
+        l, r = 0, len(row) - 1
         # while l < r
-        while l < r:
+        while l <= r:
             # calc mid
             mid = (l + r) // 2
             el = row[mid]
@@ -33,10 +33,10 @@ def k_weakest_rows(mat: list[list[int]], k: int) -> list[int]:
             elif el == 0 and row[mid - 1] == 0:
                 r = mid - 1
             # else search right
-            else:
+            elif el == 1:
                 l = mid + 1
-        # if we we exit loop, it's all 1s
-        return len(row) + 1
+        # if we we exit loop without returning, it's all 1s
+        return len(row)
 
     # use a dict to cache helper func results
         # key = num 1s
@@ -56,17 +56,20 @@ def k_weakest_rows(mat: list[list[int]], k: int) -> list[int]:
             if len(res) == k:
                 return res
             res.append(row)
-
     return res
 
 
-print(k_weakest_rows([[1,1,0,0,0],
- [1,1,1,1,0],
- [1,0,0,0,0],
- [1,1,0,0,0],
- [1,1,1,1,1]], 3) == [2, 0, 3])
+print(k_weakest_rows([
+    [1,1,0,0,0],
+    [1,1,1,1,0],
+    [1,0,0,0,0],
+    [1,1,0,0,0],
+    [1,1,1,1,1]
+ ], 3) == [2, 0, 3])
 
-print(k_weakest_rows([[1,0,0,0],
- [1,1,1,1],
- [1,0,0,0],
- [1,0,0,0]], 2) == [0,2])
+print(k_weakest_rows([
+    [1,0,0,0],
+    [1,1,1,1],
+    [1,0,0,0],
+    [1,0,0,0]
+ ], 2) == [0,2])
