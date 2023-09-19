@@ -7,6 +7,8 @@ You must solve the problem without modifying the array nums and uses only consta
 """
 
 def find_duplicate(nums: list[int]) -> int:
-    return 3
+    pass
 
-print(find_duplicate("abs"))
+
+print(find_duplicate([1,3,4,2,2]) == 2)
+print(find_duplicate([3,1,3,4,2]) == 3)
