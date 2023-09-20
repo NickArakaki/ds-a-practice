@@ -16,6 +16,7 @@ Constraints:
     asteroids[i] != 0
 """
 
+
 def asteroidCollision(asteriods):
     # initialize a stack
     stack = []
@@ -28,19 +29,21 @@ def asteroidCollision(asteriods):
             if not len(stack) or (asteroid > 0 and stack[-1] > 0) or (asteroid < 0 and stack[-1] < 0) or (asteroid > 0 and stack[-1] < 0):
                 stack.append(asteroid)
                 resolved = True
-            elif abs(asteroid) == abs(stack[-1]): # if current asteroid and previous asteroid are same magnitude
+            # if current asteroid and previous asteroid are same magnitude
+            elif abs(asteroid) == abs(stack[-1]):
                 stack.pop()
                 resolved = True
-            elif abs(asteroid) > abs(stack[-1]): # if current asteroid abs val is greater than previous asteroid
+            # if current asteroid abs val is greater than previous asteroid
+            elif abs(asteroid) > abs(stack[-1]):
                 stack.pop()
-                continue
-            else: # if the previous asteroid is moving in the opposite direction and the abs val is > current asteroid
+            else:  # if the previous asteroid is moving in the opposite direction and the abs val is > current asteroid
                 resolved = True
     # return the asteroid stack
     return stack
 
-print(asteroidCollision([5,10,-5])) # [5, 10]
-print(asteroidCollision([8,-8])) # []
-print(asteroidCollision([10,2,-5])) # [10]
-print(asteroidCollision([3, 2,-5])) # [-5]
-print(asteroidCollision([-2,-1,1,2])) # [-2,-1,1,2]
+
+print(asteroidCollision([5, 10, -5]))  # [5, 10]
+print(asteroidCollision([8, -8]))  # []
+print(asteroidCollision([10, 2, -5]))  # [10]
+print(asteroidCollision([3, 2, -5]))  # [-5]
+print(asteroidCollision([-2, -1, 1, 2]))  # [-2,-1,1,2]
