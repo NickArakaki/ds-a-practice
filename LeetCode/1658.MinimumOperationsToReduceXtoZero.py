@@ -26,7 +26,7 @@ def min_operations(nums: list[int], x: int) -> int:
         # add num at r to curr sum
         curr_sum += num
         # while curr_sum > target
-        while curr_sum > target:
+        while l <= r and curr_sum > target:
             # decrement curr sum by num at l
             curr_sum -= nums[l]
             # incremnt l pointer
@@ -45,3 +45,4 @@ print(min_operations([1, 1, 4, 2, 3], 5) == 2)
 print(min_operations([5, 6, 7, 8, 9], 4) == -1)
 print(min_operations([3, 2, 20, 1, 1, 3], 10) == 5)
 print(min_operations([1, 8, 3, 3, 3], 9) == 2)
+print(min_operations([1, 1, 1, 1], 9) == -1)
