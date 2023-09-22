@@ -15,6 +15,7 @@ top-left cell to the bottom-right cell.
 """
 
 def minimum_effort_path(heights: list[list[int]]) -> int:
+    # Dijkstra's algorithm, not necessarily the shortest path, but the one with the smallest max diff in heights
     pass
 
 
