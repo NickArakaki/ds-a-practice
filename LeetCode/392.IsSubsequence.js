@@ -28,7 +28,7 @@ function isSubsequence(s, t) {
     }
   }
   // return false
-  return sPointer >= s.length ? true : false;
+  return sPointer >= s.length;
 }
 
 console.log(isSubsequence("abc", "ahbgdc") === true);
