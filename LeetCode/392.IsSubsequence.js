@@ -17,13 +17,20 @@ function isSubsequence(s, t) {
   let sPointer = 0;
   // iterate thru string t
   for (const tChar of t) {
+    // if pointer s > len s return true
+    if (sPointer >= s.length) {
+      return true;
+    }
+    // if char at string t === char at pointer s
+    if (tChar === s[sPointer]) {
+      // increment pointer for s
+      sPointer++;
+    }
   }
-  // if pointer s > len s return true
-  // if char at string t === char at pointer s
-  // increment pointer for s
   // return false
+  return sPointer >= s.length ? true : false;
 }
 
-console.log(isSubsequence("abc", "ahbgdc") === True);
-console.log(isSubsequence("axc", "ahbgdc") === False);
-console.log(isSubsequence("", "ahbgdc") === True);
+console.log(isSubsequence("abc", "ahbgdc") === true);
+console.log(isSubsequence("axc", "ahbgdc") === false);
+console.log(isSubsequence("", "ahbgdc") === true);
