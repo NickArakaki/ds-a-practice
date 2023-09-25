@@ -19,7 +19,7 @@ return how full the jth glass in the ith row is (both i and j are 0-indexed.)
 
 
 def champage_tower(poured: int, query_row: int, query_glass: int) -> float:
-    # init parent array, [0]
+    # init parent array, [poured]
     parents = [poured]
     cur_row = 1
     # simulate while curr_row < query_row
@@ -29,7 +29,7 @@ def champage_tower(poured: int, query_row: int, query_glass: int) -> float:
         # iterate thru parent array
         for i, parent in enumerate(parents):
             # calculate val to be distributed ((curr val - 1) / 2)
-            dist_val = max((parent - 1.0) / 2, 0)
+            dist_val = max((parent - 1.0) / 2, 0.0)
             # add distribution val to child_array[i]
             children[i] += dist_val
             # add distribution val to child_array[i + 1]
@@ -43,5 +43,6 @@ def champage_tower(poured: int, query_row: int, query_glass: int) -> float:
 
 
 print(champage_tower(1, 1, 1) == 0.0000)
+print(champage_tower(1, 0, 0) == 1.0000)
 print(champage_tower(2, 1, 1) == 0.5000)
-print(champage_tower(1000000009, 33, 17) == 1.0000)
+print(champage_tower(100000009, 33, 17) == 1.0000)
