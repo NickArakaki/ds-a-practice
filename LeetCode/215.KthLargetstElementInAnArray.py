@@ -15,8 +15,9 @@ def find_kth_largest(nums: list[int], k: int) -> int:
 
     for num in nums[k:]:
         if num > heap[0]:
-            heapq.heappop(heap)
-            heapq.heappush(heap, num)
+            # heapq.heappop(heap)
+            # heapq.heappush(heap, num)
+            heapq.heapreplace(heap, num)
 
     return heap[0]
 
