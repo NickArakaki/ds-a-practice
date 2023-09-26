@@ -15,7 +15,7 @@ n == matrix[i].length
 -104 <= matrix[i][j], target <= 104
 """
 
-def searchMatrix(matrix:list[int], target:int) -> bool:
+def searchMatrix(matrix:list[list[int]], target:int) -> bool:
     l, r = 0, len(matrix) - 1
 
     while l <= r:
