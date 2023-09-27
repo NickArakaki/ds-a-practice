@@ -42,5 +42,82 @@ def decode_at_index(s: str, k: int) -> str:
 
 
 print(decode_at_index("leet2code3", 10) == "o")
-print(decode_at_index("ha22", 5) == "h")
-print(decode_at_index("a2345678999999999999999", 1) == "a")
+"""
+    "leet2code3"
+    output = "o"
+    k = 10
+
+    1  2  3  4  5  6  7  8  9  10* 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36
+    |  |  |  |  |  |  |  |  |  |   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+    l  e  e  t  l  e  e  t  c  o   d  e  l  e  e  t  l  e  e  t  c  o  d  e  l  e  e  t  l  e  e  t  c  o  d  e
+
+    length = 0
+    calculate where to start by getting length up to or just beyond k (while length < k)
+    if char is a digit multiply current length by digit
+    else increment length
+
+     *
+    "leet2code3"
+    length = 1
+
+      *
+    "leet2code3"
+    length = 2
+
+       *
+    "leet2code3"
+    length = 3
+
+        *
+    "leet2code3"
+    length = 4
+
+         *
+    "leet2code3"
+    length = 8
+
+          *
+    "leet2code3"
+    length = 9
+
+           *
+    "leet2code3"
+    length = 10
+
+    iterate in reverse
+    if char is a digit, length //= digit, k %= length
+    else if k == 0 or k == length, return char
+    else decrement length
+
+    1  2  3  4  5  6  7  8  9  10* 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36
+    |  |  |  |  |  |  |  |  |  |   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
+    l  e  e  t  l  e  e  t  c  o   d  e  l  e  e  t  l  e  e  t  c  o  d  e  l  e  e  t  l  e  e  t  c  o  d  e
+
+     *
+    "3edoc2teel"
+    char = "3"
+    length = 10 // 3 = 3
+    k = 10 % 3 = 1
+
+      *
+    "3edoc2teel"
+    char = "e"
+    length = 3 - 1 = 2
+    k = 1
+
+       *
+    "3edoc2teel"
+    char = "d"
+    length = 2 - 1 = 1
+    k = 1
+
+        *
+    "3edoc2teel"
+    char = "o"
+    length = 1
+    k = 1
+    return "o"
+"""
+
+# print(decode_at_index("ha22", 5) == "h")
+# print(decode_at_index("a2345678999999999999999", 1) == "a")
