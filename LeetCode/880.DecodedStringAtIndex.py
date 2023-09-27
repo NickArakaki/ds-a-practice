@@ -67,7 +67,7 @@ def decode_at_index(s: str, k: int) -> str:
     return ""
 
 
-print(decode_at_index("leet2code3", 10) == "o")
+# print(decode_at_index("leet2code3", 10) == "o")
 """
     "leet2code3"
     output = "o"
@@ -169,5 +169,61 @@ print(decode_at_index("leet2code3", 10) == "o")
     return "o"
 """
 
-# print(decode_at_index("ha22", 5) == "h")
+print(decode_at_index("ha22", 5) == "h")
+"""
+    length = 0
+
+    *
+    "ha22"
+    length = 1
+
+    *
+    "ha22"
+    length = 2
+
+    *
+    "ha22"
+    length = 4
+
+        *
+    "ha22"
+    length = 8
+
+    1 2 3 4 5* 6 7 8
+    | | | | |  | | |
+    h a h a h  a h a
+
+     *
+    "22ah"
+    length = 8 // 2 = 4
+    k = 5 % 4 = 1
+    1* 2 3 4
+    |  | | |
+    h  a h a
+
+      *
+    "22ah"
+    length = 4 // 2 = 2
+    k = 1 % 2 = 1
+    1* 2
+    |  |
+    h  a
+
+       *
+    "22ah"
+    length = 2 - 1 = 1
+    k = 1
+    1* 2
+    |  |
+    h  a
+
+        *
+    "22ah"
+    length = 1
+    k = 1
+    1* 2
+    |  |
+    h  a
+    return "h"
+"""
 # print(decode_at_index("a2345678999999999999999", 1) == "a")
