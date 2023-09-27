@@ -13,16 +13,16 @@ def decode_at_index(s: str, k: int) -> str:
     i = 0
     # for char in s
     while length < k:
-        char = s[i]
         # if char is digit, multiply length by digit
-        if char.isdigit():
-            length *= int(char)
+        if s[i].isdigit():
+            length *= int(s[i])
         # else increment length
         else:
             length += 1
+        i += 1
 
     # iterate over str in reverse order
-    for j in range(i, -1, -1):
+    for j in range(i-1, -1, -1):
         char = s[j]
         # if char is a digit
         if char.isdigit():
