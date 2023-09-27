@@ -7,37 +7,63 @@ If the character read is a digit d, the entire current tape is repeatedly writte
 Given an integer k, return the kth letter (1-indexed) in the decoded string.
 """
 
+# def decode_at_index(s: str, k: int) -> str:
+#     # calculate total length of decoded str, up to length k
+#     length = 0
+#     i = 0
+#     # for char in s
+#     while length < k:
+#         # if char is digit, multiply length by digit
+#         if s[i].isdigit():
+#             length *= int(s[i])
+#         # else increment length
+#         else:
+#             length += 1
+#         i += 1
+
+#     # iterate over str in reverse order
+#     for j in range(i-1, -1, -1):
+#         char = s[j]
+#         # if char is a digit
+#         if char.isdigit():
+#             # length get updated by dividing length by that digit, this removes duplicates of decoded string
+#             length //= int(char)
+#             # k gets updated to the modulus of k and length, only look in first copy of decoded string
+#             k %= length
+#         # else
+#         else:
+#             # if k is 0 or k == length, return the char
+#             if k == 0 or k == length:
+#                 return char
+#             # decrement length
+#             length -= 1
+#     # return empty string if input is empty
+#     return ""
+
 def decode_at_index(s: str, k: int) -> str:
-    # calculate total length of decoded str, up to length k
+    # calculate total len of decoded str
     length = 0
-    i = 0
-    # for char in s
-    while length < k:
-        # if char is digit, multiply length by digit
-        if s[i].isdigit():
-            length *= int(s[i])
-        # else increment length
+    for char in s:
+        if char.isdigit():
+            length *= int(char)
         else:
             length += 1
-        i += 1
-
-    # iterate over str in reverse order
-    for j in range(i-1, -1, -1):
-        char = s[j]
-        # if char is a digit
-        if char.isdigit():
-            # length get updated by dividing length by that digit
-            length //= int(char)
-            # k gets updated to the modulus of k and length
+    # iterate thru s in reverse
+    for i in range(len(s) - 1, -1, -1):
+        cur_char = s[i]
+        # if char is digit
+        if cur_char.isdigit():
+            # int divide length
+            length //= int(cur_char)
+            # update k by mod new length, points to char in og str (ie before mult by cur digit)
             k %= length
         # else
         else:
-            # if k is 0 or k == length, return the char
-            if k == 0 or k == length:
-                return char
-            # decrement length
+            # if k == 0 or k == length, return char
+            if k == 0 or k == length: return cur_char
+            # decrement lenght
             length -= 1
-    # return empty string if input is empty
+    # return empty str
     return ""
 
 
@@ -52,7 +78,7 @@ print(decode_at_index("leet2code3", 10) == "o")
     l  e  e  t  l  e  e  t  c  o   d  e  l  e  e  t  l  e  e  t  c  o  d  e  l  e  e  t  l  e  e  t  c  o  d  e
 
     length = 0
-    calculate where to start by getting length up to or just beyond k (while length < k)
+    calculate length of decoded str
     if char is a digit multiply current length by digit
     else increment length
 
@@ -84,6 +110,18 @@ print(decode_at_index("leet2code3", 10) == "o")
     "leet2code3"
     length = 10
 
+            *
+    "leet2code3"
+    length = 11
+
+             *
+    "leet2code3"
+    length = 12
+
+              *
+    "leet2code3"
+    length = 36
+
     iterate in reverse
     if char is a digit, length //= digit, k %= length
     else if k == 0 or k == length, return char
@@ -96,26 +134,38 @@ print(decode_at_index("leet2code3", 10) == "o")
      *
     "3edoc2teel"
     char = "3"
-    length = 10 // 3 = 3
-    k = 10 % 3 = 1
+    length = 36 // 3 = 12
+    k = 10 % 12 = 10
+
+    1  2  3  4  5  6  7  8  9  10* 11 12
+    |  |  |  |  |  |  |  |  |  |   |  |
+    l  e  e  t  l  e  e  t  c  o   d  e
 
       *
     "3edoc2teel"
     char = "e"
-    length = 3 - 1 = 2
-    k = 1
+    length = 12 - 1 = 11
+    k = 10
+
+    1  2  3  4  5  6  7  8  9  10* 11 12
+    |  |  |  |  |  |  |  |  |  |   |  |
+    l  e  e  t  l  e  e  t  c  o   d  e
 
        *
     "3edoc2teel"
     char = "d"
-    length = 2 - 1 = 1
-    k = 1
+    length = 11 - 1 = 10
+    k = 10
+
+    1  2  3  4  5  6  7  8  9  10* 11 12
+    |  |  |  |  |  |  |  |  |  |   |  |
+    l  e  e  t  l  e  e  t  c  o   d  e
 
         *
     "3edoc2teel"
-    char = "o"
-    length = 1
-    k = 1
+    char = "0"
+    length = 10
+    k = 10
     return "o"
 """
 
