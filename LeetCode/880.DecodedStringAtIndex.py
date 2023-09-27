@@ -40,28 +40,57 @@ Given an integer k, return the kth letter (1-indexed) in the decoded string.
 #     # return empty string if input is empty
 #     return ""
 
+# def decode_at_index(s: str, k: int) -> str:
+#     # calculate total len of decoded str
+#     length = 0
+#     for char in s:
+#         if char.isdigit():
+#             length *= int(char)
+#         else:
+#             length += 1
+#     # iterate thru s in reverse
+#     for i in range(len(s) - 1, -1, -1):
+#         cur_char = s[i]
+#         # if char is digit
+#         if cur_char.isdigit():
+#             # int divide length
+#             length //= int(cur_char)
+#             # update k by mod new length, points to char in og str (ie before mult by cur digit)
+#             k %= length
+#         # else
+#         else:
+#             # if k == 0 or k == length, return char
+#             if k == 0 or k == length: return cur_char
+#             # decrement lenght
+#             length -= 1
+#     # return empty str
+#     return ""
+
 def decode_at_index(s: str, k: int) -> str:
-    # calculate total len of decoded str
-    length = 0
-    for char in s:
-        if char.isdigit():
-            length *= int(char)
+    # calculate length of decoded str up to len k
+    length: int = 0
+    i: int = 0
+    while length < k:
+        if s[i].isdigit():
+            length *= int(s[i])
         else:
             length += 1
-    # iterate thru s in reverse
-    for i in range(len(s) - 1, -1, -1):
-        cur_char = s[i]
-        # if char is digit
-        if cur_char.isdigit():
-            # int divide length
-            length //= int(cur_char)
-            # update k by mod new length, points to char in og str (ie before mult by cur digit)
+        i += 1
+
+    # iterate thru s in reverse starting from where we left off when calculating length
+    for j in range(i-1, -1, -1):
+        char = s[j]
+        # if current char is a digit
+        if char.isdigit():
+            # update length by dividing by curr char
+            length //= int(char)
+            # update k by mod with new length
             k %= length
         # else
         else:
             # if k == 0 or k == length, return char
-            if k == 0 or k == length: return cur_char
-            # decrement lenght
+            if k == 0 or k == length: return char
+            # decrement char
             length -= 1
     # return empty str
     return ""
