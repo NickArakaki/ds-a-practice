@@ -8,7 +8,37 @@ Given an integer k, return the kth letter (1-indexed) in the decoded string.
 """
 
 def decode_at_index(s: str, k: int) -> str:
-    pass
+    # calculate total length of decoded str, up to length k
+    length = 0
+    i = 0
+    # for char in s
+    while length < k:
+        char = s[i]
+        # if char is digit, multiply length by digit
+        if char.isdigit():
+            length *= int(char)
+        # else increment length
+        else:
+            length += 1
+
+    # iterate over str in reverse order
+    for j in range(i, -1, -1):
+        char = s[j]
+        # if char is a digit
+        if char.isdigit():
+            # length get updated by dividing length by that digit
+            length //= int(char)
+            # k gets updated to the modulus of k and length
+            k %= length
+        # else
+        else:
+            # if k is 0 or k == length, return the char
+            if k == 0 or k == length:
+                return char
+            # decrement length
+            length -= 1
+    # return empty string if input is empty
+    return ""
 
 
 print(decode_at_index("leet2code3", 10) == "o")
