@@ -49,7 +49,33 @@ Notice that the solution set must not contain duplicate triplets.
 #     return res
 
 def three_sum(nums: list[int]) -> list[list[int]]:
-    pass
+    # sort nums
+    nums.sort()
+    # init res list
+    res = []
+    # iterate over sorted nums
+    for i, num in enumerate(nums):
+        if i > 0 and num == nums[i - 1]:
+            continue
+        l, r = i + 1, len(nums) - 1
+        while l < r:
+            cur_sum = num + nums[l] + nums[r]
+            if cur_sum > 0:
+                # move right pointer to left
+                r -= 1
+            elif cur_sum < 0:
+                # move left pointer to right
+                l += 1
+            else:
+                # add current combo to res list
+                res.append([num, nums[l], nums[r]])
+                # increment left pointer
+                l += 1
+                # while left == nums[left-1] and left < right:
+                while nums[l] == nums[l - 1] and l < r:
+                    # increment left
+                    l += 1
+    return res
 
 print(three_sum([-1,0,1,2,-1,-4]) == [[-1,-1,2],[-1,0,1]])
 print(three_sum([]) == [])
