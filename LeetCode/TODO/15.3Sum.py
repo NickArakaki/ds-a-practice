@@ -6,6 +6,8 @@ Notice that the solution set must not contain duplicate triplets.
 """
 
 def three_sum(nums: list[int]) -> list[list[int]]:
+    # sort nums
+    nums.sort()
     # init a res array
     res = []
     # init seen set
@@ -28,15 +30,26 @@ def three_sum(nums: list[int]) -> list[list[int]]:
     return res
 
 def two_sum(nums: list[int], target: int) -> list[list[int]]:
-    # init a hashmap diff between num and target as key, val is num
+    # init a hashmap diff num:bool
+    map = {}
     # init res list
+    res = []
     # iterate through nums
+    for num in nums:
         # calculate diff
-        # if diff in hashmap
-            #
+        diff = target - num
+        # if diff in hashmap and has not been used
+        if diff in map and not map[diff]:
+            # add current num and map[diff], to res list as list
+            res.append([diff, num])
+            # map[diff] = True
+            map[diff] = True
+        if num not in map:
+            map[num] = False
     # return res list
-    pass
+    return res
 
 print(three_sum([-1,0,1,2,-1,-4]) == [[-1,-1,2],[-1,0,1]])
+print(three_sum([-1,0,1,2,-1,-4,-1,0,1,2,-1,-4]) == [[-1,-1,2],[-1,0,1]])
 print(three_sum([]) == [])
 print(three_sum([0,0,0]) == [[0,0,0]])
