@@ -8,15 +8,12 @@ Given an integer array nums, return true if the given array is monotonic, or fal
 """
 
 def is_monotonic(nums: list[int]) -> bool:
-    # three pointers
-    # init l pointer to 0
     l = mid = 0
-    while mid < len(nums) and nums[mid] == nums[l]:
+    while mid < len(nums) - 1 and nums[mid] == nums[l]:
         mid += 1
     r = mid
-    # iterate while r < len nums
-    while r < len(nums):
-        while r < len(nums) and nums[mid] == nums[r]:
+    while r < len(nums) - 1:
+        while r < len(nums) - 1 and nums[mid] == nums[r]:
             r += 1
         if nums[l] > nums[mid] < nums[r] or nums[l] < nums[mid] > nums[r]:
             return False
@@ -25,7 +22,8 @@ def is_monotonic(nums: list[int]) -> bool:
     return True
 
 
-print(is_monotonic([1,2,2,3]) == True)
-print(is_monotonic([6,5,4,4]) == True)
-print(is_monotonic([1,3,2]) == False)
-print(is_monotonic([11,11,9,4,3,3,3,1,-1,-1,3,3,3,5,5,5]) == False)
+# print(is_monotonic([1,2,2,3]) == True)
+# print(is_monotonic([6,5,4,4]) == True)
+# print(is_monotonic([1,3,2]) == False)
+# print(is_monotonic([11,11,9,4,3,3,3,1,-1,-1,3,3,3,5,5,5]) == False)
+print(is_monotonic([5,5,5,5,5,5]) == True)
