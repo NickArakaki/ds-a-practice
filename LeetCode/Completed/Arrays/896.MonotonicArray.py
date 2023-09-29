@@ -22,8 +22,11 @@ def is_monotonic(nums: list[int]) -> bool:
     return True
 
 
-# print(is_monotonic([1,2,2,3]) == True)
-# print(is_monotonic([6,5,4,4]) == True)
-# print(is_monotonic([1,3,2]) == False)
-# print(is_monotonic([11,11,9,4,3,3,3,1,-1,-1,3,3,3,5,5,5]) == False)
+print(is_monotonic([1,2,2,3]) == True)
+print(is_monotonic([6,5,4,4]) == True)
+print(is_monotonic([1,3,2]) == False)
+print(is_monotonic([11,11,9,4,3,3,3,1,-1,-1,3,3,3,5,5,5]) == False)
 print(is_monotonic([5,5,5,5,5,5]) == True)
+print(is_monotonic([5]) == True)
+print(is_monotonic([5,5]) == True)
+print(is_monotonic([5,4]) == True)
