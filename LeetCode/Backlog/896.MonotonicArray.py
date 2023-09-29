@@ -8,6 +8,17 @@ Given an integer array nums, return true if the given array is monotonic, or fal
 """
 
 def is_monotonic(nums: list[int]) -> bool:
+    # three pointers
+    # init l pointer to 0
+    # init r and mid to 0
+    # iterate while r < len nums
+    # mid = next el that is not equal to nums[l]
+    # r = next el that is not equal to nums[mid]
+    # if nums[l] > nums[mid] < nums[r] or nums[l] < nums[mid] > nums[r]:
+        # return False
+    # l points to mid
+    # mid points to r
+    # return True
     pass
 
 
