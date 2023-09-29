@@ -7,20 +7,32 @@ An array nums is monotone decreasing if for all i <= j, nums[i] >= nums[j].
 Given an integer array nums, return true if the given array is monotonic, or false otherwise.
 """
 
-def is_monotonic(nums: list[int]) -> bool:
-    l = mid = 0
-    while mid < len(nums) - 1 and nums[mid] == nums[l]:
-        mid += 1
-    r = mid
-    while r < len(nums) - 1:
-        while r < len(nums) - 1 and nums[mid] == nums[r]:
-            r += 1
-        if nums[l] > nums[mid] < nums[r] or nums[l] < nums[mid] > nums[r]:
-            return False
-        l = mid
-        mid = r
-    return True
+# def is_monotonic(nums: list[int]) -> bool:
+#     l = mid = 0
+#     while mid < len(nums) - 1 and nums[mid] == nums[l]:
+#         mid += 1
+#     r = mid
+#     while r < len(nums) - 1:
+#         while r < len(nums) - 1 and nums[mid] == nums[r]:
+#             r += 1
+#         if nums[l] > nums[mid] < nums[r] or nums[l] < nums[mid] > nums[r]:
+#             return False
+#         l = mid
+#         mid = r
+#     return True
 
+
+def is_monotonic(nums: list[int]) -> bool:
+    prev, increase, decrease = nums[0], False, False
+    for num in nums[1:]:
+        if num < prev:
+            increase = True
+        if num > prev:
+            decrease = True
+        if increase and decrease:
+            return False
+        prev = num
+    return True
 
 print(is_monotonic([1,2,2,3]) == True)
 print(is_monotonic([6,5,4,4]) == True)
