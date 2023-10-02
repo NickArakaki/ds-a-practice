@@ -5,10 +5,13 @@ preserving whitespace and initial word order.
 
 def reverse_words(s: str) -> str:
     # split str into words
+    words = s.split(" ")
     # iterate thru words
+    for i, word in enumerate(words):
         # reverse each word
+        words[i] = word[::-1]
     # return reversed words joined on an empty space
-    pass
+    return " ".join(words)
 
 
 print(reverse_words("Let's take LeetCode contest") == "s'teL ekat edoCteeL tsetnoc")
