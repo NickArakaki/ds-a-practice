@@ -8,17 +8,18 @@ Return true if there is a 132 pattern in nums, otherwise, return false.
 def find_132_pattern(nums: list[int]) -> bool:
     if len(nums) < 3: return False
     stack = [(nums[0], nums[0])] # i, j
-    # iterate thru nums (start from 1 -> end)
-    for num in nums[1:]:
-        prior_min = stack[-1][0]
-        while stack and num > stack[-1][1]:
-            min, max = stack.pop()
-            prior_min = min
-        if stack and stack[-1][0] < num < stack[-1][1]:
+    cur_min = nums[0]
+
+    for n in nums[1:]:
+        while stack and n >= stack[-1][1]:
+            stack.pop()
+        if stack and n > stack[-1][0]:
             return True
-        stack.append((prior_min, num))
-    # return False
+        stack.append((cur_min, n))
+        cur_min = min(n, cur_min)
+
     return False
+
 
 print(find_132_pattern([1,2,3,4]) == False)
 print(find_132_pattern([3,1,4,2]) == True)
