@@ -4,6 +4,10 @@ preserving whitespace and initial word order.
 """
 
 def reverse_words(s: str) -> str:
+    # split str into words
+    # iterate thru words
+        # reverse each word
+    # return reversed words joined on an empty space
     pass
 
 
