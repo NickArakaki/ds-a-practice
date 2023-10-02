@@ -15,6 +15,12 @@ Assuming Alice and Bob play optimally, return true if Alice wins, or return fals
 """
 
 def winner_of_game(colors: str) -> bool:
+    # track num alice moves
+    # track num bob moves
+    # iterate thru str with sliding window of len 3
+        # if prev char == cur char == next char:
+            # increment appripriate counter
+    # return alice moves > bob moves
     pass
 
 
