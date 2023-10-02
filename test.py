@@ -1,14 +1,6 @@
-from Helpers import LinkedList
+from datetime import datetime
 
-node1 = LinkedList.SinglyLinkedListNode(1)
-node2 = LinkedList.SinglyLinkedListNode(2)
-node3 = LinkedList.SinglyLinkedListNode(3)
-node4 = LinkedList.SinglyLinkedListNode(4)
-node5 = LinkedList.SinglyLinkedListNode(5)
+date = "01-01-2023"
+time = "16:00"
 
-llist = LinkedList.SinglyLinkedList(node1)
-llist.append(node2)
-llist.append(node3)
-llist.append(node4)
-llist.append(node5)
-llist.print_list()
+print(datetime.strptime(f'{date} {time}', "%d-%m-%Y %H:%M"))
