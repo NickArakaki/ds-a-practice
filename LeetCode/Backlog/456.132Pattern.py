@@ -6,11 +6,10 @@ Return true if there is a 132 pattern in nums, otherwise, return false.
 """
 
 def find_132_pattern(nums: list[int]) -> bool:
-    # if len of nums < 3 return False
-    # sliding window of len 3
-        # if nums[i - 1] < nums[i + 1] < nums[i] return True
-    # return False
-    pass
+    if len(nums) < 3: return False
+    for i in range(1, len(nums) - 1):
+        if nums[i - 1] < nums[i + 1] < nums[i]: return True
+    return False
 
 
 print(find_132_pattern([1,2,3,4]) == False)
