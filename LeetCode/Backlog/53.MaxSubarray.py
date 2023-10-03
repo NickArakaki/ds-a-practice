@@ -6,7 +6,7 @@ subarray with the largest sum, and return its sum.
 def max_subarray(nums: list[int]) -> int:
     max_sum = cur_sum = 0
     for num in nums:
-        if cur_sum <= 0:
+        if cur_sum < 0:
             cur_sum = 0
         cur_sum += num
         max_sum = max(max_sum, cur_sum)
