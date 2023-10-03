@@ -53,7 +53,8 @@ from collections import deque
 #     return -1
 
 def shortest_path_binary_matrix(grid: list[list[int]]) -> int:
-    # Dijkstra's Algo
+    # if start or end is a 1 return -1, there needs to be a clear path
+    #
     pass
 
 print(shortest_path_binary_matrix([[0,1],[1,0]])) # 2
