@@ -5,6 +5,10 @@ A pair (i, j) is called good if nums[i] == nums[j] and i < j.
 """
 
 def num_identical_pairs(nums: list[int]) -> int:
+    # count each el of nums
+    # iterate thru keys of count
+        # calculate num pairs for each count n(n-1) / 2
+    # return num pairs
     pass
 
 
