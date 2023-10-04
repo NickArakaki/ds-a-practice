@@ -26,14 +26,26 @@ class MyHashMap:
 
 
     def _resize(self) -> list:
+        length = len(self.my_map)
         # check current size of map list
-        # if len(map) + 1 >= len(map) // 2
-            # new list of len(map) * 2
-            # traverse original map
-                # rehash each node and add to new list
-        # assign self.my_map to new map
-        # return self.my_map
-        pass
+        if length + 1 >= length // 2:
+            new_map = [None]*(length * 2)
+
+            for list_node in self.my_map:
+                while list_node:
+                    new_hash = hash(list_node.key) % len(new_map)
+                    prev = new_map[new_hash]
+                    if not prev:
+                        new_map[new_hash] = list_node
+                    else:
+                        while prev and prev.next:
+                            prev = prev.next
+                        prev.next = list_node
+                    list_node = list_node.next
+
+            self.my_map = new_map
+
+        return self.my_map
 
 
     def put(self, key:int, value:int) -> None:
