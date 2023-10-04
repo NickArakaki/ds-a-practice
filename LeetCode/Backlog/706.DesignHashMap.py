@@ -27,7 +27,6 @@ class MyHashMap:
 
     def _resize(self) -> list:
         length = len(self.my_map)
-        # check current size of map list
         if length + 1 >= length // 2:
             new_map = [None]*(length * 2)
 
