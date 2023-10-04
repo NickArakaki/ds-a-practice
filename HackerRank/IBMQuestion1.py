@@ -7,6 +7,17 @@ Find the maximum total profit possible, if there is no valid triplet, return -1
 """
 
 def max_profit(price, profit):
+    # map profits to days
+    # sort profits
+    # track cur sum
+    # track max sum
+    # iterate through sorted profits with sliding window
+        # if current window is greater than 3:
+            # move left adjust left pointer until it's correct size
+        # add r val to cur sum
+        # if window len == 3
+            # check prices with mapped profit values
+    # return max sum
     pass
 
 
