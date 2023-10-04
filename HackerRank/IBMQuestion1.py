@@ -18,12 +18,11 @@ def max_profit(price, profit):
     max_sum = -1
     l = 0
     for r in range(len(profit)):
-        window = r - l + 1
-        while window > 3:
+        while r - l + 1 > 3:
             cur_sum -= profit[l]
             l += 1
         cur_sum += profit[r]
-        if window == 3 and price[profit_map[profit[l]]] < price[profit_map[profit[l + 1]]] < price[profit_map[profit[r]]]:
+        if r - l + 1 == 3 and price[profit_map[profit[l]]] < price[profit_map[profit[l + 1]]] < price[profit_map[profit[r]]]:
             max_sum = max(max_sum, cur_sum)
 
     return max_sum
