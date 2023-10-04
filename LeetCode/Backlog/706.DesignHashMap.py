@@ -32,6 +32,11 @@ class MyHashMap:
 
 
 obj = MyHashMap()
-obj.put(1,2)
-param_2 = obj.get(1)
-obj.remove(1)
+obj.put(1,1)
+obj.put(2,2)
+print(obj.get(2) == 2)
+print(obj.get(3) == -1)
+obj.put(2,1)
+print(obj.get(2) == 1)
+obj.remove(2)
+print(obj.get(2) == -1)
