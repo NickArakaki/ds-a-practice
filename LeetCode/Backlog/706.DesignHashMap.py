@@ -21,8 +21,8 @@ class ListNode:
 
 
 class MyHashMap:
-    def __init__(self):
-        self.my_map = []
+    def __init__(self, capacity=16):
+        self.my_map = [None]*capacity
 
 
     def _resize(self) -> list:
@@ -48,14 +48,21 @@ class MyHashMap:
 
 
     def put(self, key:int, value:int) -> None:
-        # call _resize
-        # create a new node with key and value
-        # hash key % len(input)
-        # traverse llist
-            # if we find a node with same key, update val
-            # else add new node to end of list
-        # return
-        pass
+        self._resize()
+        key_hash = hash(key) % len(self.my_map)
+        llist = self.my_map[key_hash]
+        if llist is None:
+            self.my_map[key_hash] = ListNode(key, value)
+        else:
+            prev = llist
+            while llist:
+                if llist.key == key:
+                    llist.val = value
+                    return
+                prev = llist
+                llist = llist.next
+            prev.next = ListNode(key,value)
+        return
 
 
     def get(self, key: int) -> int:
