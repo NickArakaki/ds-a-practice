@@ -25,7 +25,23 @@ class MyHashMap:
         self.my_map = []
 
 
+    def _resize(self) -> list:
+        # check current size of map list
+        # if len(map) + 1 >= len(map) // 2
+            # new list of len(map) * 2
+            # traverse original map
+                # rehash each node and add to new list
+        # assign self.my_map to new map
+        # return self.my_map
+        pass
+
+
     def put(self, key:int, value:int) -> None:
+        # call _resize
+        # create a new node with key and value
+        # hash key % len(input)
+        # put at the end of the llist
+        # return
         pass
 
 
