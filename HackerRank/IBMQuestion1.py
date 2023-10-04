@@ -8,17 +8,25 @@ Find the maximum total profit possible, if there is no valid triplet, return -1
 
 def max_profit(price, profit):
     # map profits to days
+    profit_map = {} # potential edge case if multiple days have the same profit val, maybe store as a set?
+    for day, val in enumerate(profit):
+        profit_map[val] = day
     # sort profits
+    profit.sort()
     # track cur sum
-    # track max sum
-    # iterate through sorted profits with sliding window
-        # if current window is greater than 3:
-            # move left adjust left pointer until it's correct size
-        # add r val to cur sum
-        # if window len == 3
-            # check prices with mapped profit values
-    # return max sum
-    pass
+    cur_sum = 0
+    max_sum = -1
+    l = 0
+    for r in range(len(profit)):
+        window = r - l + 1
+        while window > 3:
+            cur_sum -= profit[l]
+            l += 1
+        cur_sum += profit[r]
+        if window == 3 and price[profit_map[profit[l]]] < price[profit_map[profit[l + 1]]] < price[profit_map[profit[r]]]:
+            max_sum = max(max_sum, cur_sum)
+
+    return max_sum
 
 
 print(max_profit([1,5,3,4,6], [2,3,4,5,6]) == 15)
