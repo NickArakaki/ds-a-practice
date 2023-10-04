@@ -40,7 +40,9 @@ class MyHashMap:
         # call _resize
         # create a new node with key and value
         # hash key % len(input)
-        # put at the end of the llist
+        # traverse llist
+            # if we find a node with same key, update val
+            # else add new node to end of list
         # return
         pass
 
@@ -55,6 +57,10 @@ class MyHashMap:
 
 
     def remove(self, key: int) -> None:
+        # hash key % len(map)
+        # key into map and traverse llist until we find node with key
+            # remove node
+        # return
         pass
 
 
