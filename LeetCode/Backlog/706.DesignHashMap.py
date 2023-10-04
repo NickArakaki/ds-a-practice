@@ -21,8 +21,8 @@ class ListNode:
 
 
 class MyHashMap:
-    def __init__(self):
-        self.my_map = [None]
+    def __init__(self, capacity=8):
+        self.my_map = [None]*capacity
         self.num_nodes = 0
 
 
