@@ -23,11 +23,12 @@ class ListNode:
 class MyHashMap:
     def __init__(self, capacity=8):
         self.my_map = [None]*capacity
+        self.num_nodes = 0
 
 
     def _resize(self) -> list:
         length = len(self.my_map)
-        if length + 1 >= length // 2:
+        if self.num_nodes + 1 >= length // 2:
             new_map = [None]*(length * 2)
 
             for list_node in self.my_map:
@@ -62,16 +63,19 @@ class MyHashMap:
                 prev = llist
                 llist = llist.next
             prev.next = ListNode(key,value)
+            self.num_nodes += 1
         return
 
 
     def get(self, key: int) -> int:
         # hash key % len(map)
-        # key into my_map with hashed key
-        # iterate thru llist find node with key
-            # if we find node return val
-            # else return -1
-        pass
+        key_hash = hash(key) % len(self.my_map)
+        head = self.my_map[key_hash]
+        while head:
+            if head.key == key:
+                return head.val
+            head = head.next
+        return -1
 
 
     def remove(self, key: int) -> None:
