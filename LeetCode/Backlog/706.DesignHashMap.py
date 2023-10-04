@@ -41,7 +41,9 @@ class MyHashMap:
                         while prev and prev.next:
                             prev = prev.next
                         prev.next = list_node
+                    prev = list_node
                     list_node = list_node.next
+                    prev.next = None
 
             self.my_map = new_map
 
@@ -86,6 +88,7 @@ class MyHashMap:
         while head:
             if head.key == key:
                 prev.next = head.next
+                self.num_nodes -= 1
                 break
             prev = head
             head = head.next
