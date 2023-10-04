@@ -46,7 +46,11 @@ class MyHashMap:
 
 
     def get(self, key: int) -> int:
-        #
+        # hash key % len(map)
+        # key into my_map with hashed key
+        # iterate thru llist find node with key
+            # if we find node return val
+            # else return -1
         pass
 
 
