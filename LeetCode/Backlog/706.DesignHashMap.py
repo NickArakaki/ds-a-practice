@@ -13,10 +13,16 @@ if this map contains no mapping for the key.
 
 void remove(key) removes the key and its corresponding value if the map contains the mapping for the key.
 """
+class ListNode:
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
+        self.next = None
+
 
 class MyHashMap:
     def __init__(self):
-        pass
+        self.my_map = []
 
 
     def put(self, key:int, value:int) -> None:
