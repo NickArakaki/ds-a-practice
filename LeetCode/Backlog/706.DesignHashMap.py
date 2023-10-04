@@ -65,7 +65,7 @@ class MyHashMap:
                 prev = llist
                 llist = llist.next
             prev.next = ListNode(key,value)
-            self.num_nodes += 1
+        self.num_nodes += 1
         return
 
 
