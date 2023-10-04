@@ -14,15 +14,15 @@ if this map contains no mapping for the key.
 void remove(key) removes the key and its corresponding value if the map contains the mapping for the key.
 """
 class ListNode:
-    def __init__(self, key, val):
+    def __init__(self, key=None, val=None):
         self.key = key
         self.val = val
         self.next = None
 
 
 class MyHashMap:
-    def __init__(self, capacity=8):
-        self.my_map = [None]*capacity
+    def __init__(self):
+        self.my_map = [None]
         self.num_nodes = 0
 
 
@@ -68,7 +68,6 @@ class MyHashMap:
 
 
     def get(self, key: int) -> int:
-        # hash key % len(map)
         key_hash = hash(key) % len(self.my_map)
         head = self.my_map[key_hash]
         while head:
@@ -79,11 +78,18 @@ class MyHashMap:
 
 
     def remove(self, key: int) -> None:
-        # hash key % len(map)
-        # key into map and traverse llist until we find node with key
-            # remove node
-        # return
-        pass
+        key_hash = hash(key) % len(self.my_map)
+        head = self.my_map[key_hash]
+        dummy_node = ListNode()
+        dummy_node.next = head
+        prev = dummy_node
+        while head:
+            if head.key == key:
+                prev.next = head.next
+                break
+            prev = head
+            head = head.next
+        self.my_map[key_hash] = dummy_node.next
 
 
 obj = MyHashMap()
