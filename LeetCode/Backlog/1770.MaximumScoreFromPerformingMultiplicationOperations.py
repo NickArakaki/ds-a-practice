@@ -23,26 +23,26 @@ Return the maximum score after performing m operations.
 
 def max_score(nums: list[int], multipliers: list[int]) -> int:
     # backtracking
-    def _backtrack(nums: list[int], multipliers: list[int], cur_sum: int=0) -> int:
-        if not multipliers:
+    def _backtrack(num_l, num_r, mult_i, cur_sum: int=0) -> int:
+        if mult_i >= len(multipliers):
             return cur_sum
 
         max_sum = cur_sum
 
         # take l num
-        cur_sum += nums[0] * multipliers[0]
-        max_sum = max(max_sum, _backtrack(nums[1:], multipliers[1:], cur_sum))
+        cur_sum += nums[num_l] * multipliers[mult_i]
+        max_sum = max(max_sum, _backtrack(num_l + 1, num_r, mult_i + 1, cur_sum))
 
         # backtrack
-        cur_sum -= nums[0] * multipliers[0]
+        cur_sum -= nums[num_l] * multipliers[mult_i]
 
         # take r num
-        cur_sum += nums[-1] * multipliers[0]
-        max_sum = max(max_sum, _backtrack(nums[:-1], multipliers[1:], cur_sum))
+        cur_sum += nums[num_r] * multipliers[mult_i]
+        max_sum = max(max_sum, _backtrack(num_l, num_r - 1, mult_i + 1, cur_sum))
 
         return max_sum
 
-    return _backtrack(nums, multipliers)
+    return _backtrack(0, len(nums) - 1, 0)
 
 
 print(max_score([1,2,3], [3,2,1]) == 14)
