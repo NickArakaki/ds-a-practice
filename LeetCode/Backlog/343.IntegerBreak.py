@@ -14,13 +14,17 @@ def integer_break(n: int) -> int:
         # set val to the max of current val and the product
     # return max val
 # call dfs(n)
+    cache = {1: 1}
+
     def _dfs(num) -> int:
-        if num == 1:
-            return 1
+        if num in cache:
+            return cache[num]
 
         val = 0 if num == n else num
         for i in range(1, num):
             val = max(val, (_dfs(i) * _dfs(num - i)))
+
+        cache[num] = val
         return val
 
     return _dfs(n)
