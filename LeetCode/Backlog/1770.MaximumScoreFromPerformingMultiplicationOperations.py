@@ -10,7 +10,18 @@ Remove x from nums.
 Return the maximum score after performing m operations.
 """
 
-def max_score(nums: list[int], multiplier: list[int]) -> int:
+def max_score(nums: list[int], multipliers: list[int]) -> int:
+    # backtracking
+    # parameters: nums, multipliers, cur_sum
+        # max_sum = cur_sum
+        # base case, if multipliers is none return cur sum
+        # increment cur_sum by multiplier and left num
+        # recursively call passing in nums from 1 -> end, multipliers 1 -> end, cur_sum
+        # update max sum to either cur max or val returned from recursive call
+        # backtrack step, undo cur_sum incrementation
+        # repeat for r num
+        # return max sum
+    # return call backtrack passing nums, and multipliers
     pass
 
 
