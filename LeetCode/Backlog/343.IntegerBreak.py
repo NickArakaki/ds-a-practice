@@ -5,6 +5,15 @@ Return the maximum product you can get.
 """
 
 def integer_break(n: int) -> int:
+    # recursive solution
+    # dfs
+        # base case: if num == 1 return 1
+        # initial val = 0 if current num == n else n because we need to break up n into at least 2 nums
+        # iterate thru range from 1 to num, non-inclusive
+            # get the product of dfs(i) * dfs(num - i)
+            # set val to the max of current val and the product
+        # return max val
+    # call dfs(n)
     pass
 
 
