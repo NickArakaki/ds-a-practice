@@ -9,9 +9,6 @@ Note that multipliers[0] corresponds to the first operation, multipliers[1] to t
 Remove x from nums.
 Return the maximum score after performing m operations.
 """
-
-def max_score(nums: list[int], multipliers: list[int]) -> int:
-    # backtracking
     # parameters: nums, multipliers, cur_sum
         # max_sum = cur_sum
         # base case, if multipliers is none return cur sum
@@ -22,8 +19,31 @@ def max_score(nums: list[int], multipliers: list[int]) -> int:
         # repeat for r num
         # return max sum
     # return call backtrack passing nums, and multipliers
-    pass
 
 
-print(max_score([1,2,3], [3,2,1]))
-print(max_score([-5,-3,-3,-2,7,1], [-10,-5,3,4,6]))
+def max_score(nums: list[int], multipliers: list[int]) -> int:
+    # backtracking
+    def _backtrack(nums: list[int], multipliers: list[int], cur_sum: int=0) -> int:
+        if not multipliers:
+            return cur_sum
+
+        max_sum = cur_sum
+
+        # take l num
+        cur_sum += nums[0] * multipliers[0]
+        max_sum = max(max_sum, _backtrack(nums[1:], multipliers[1:], cur_sum))
+
+        # backtrack
+        cur_sum -= nums[0] * multipliers[0]
+
+        # take r num
+        cur_sum += nums[-1] * multipliers[0]
+        max_sum = max(max_sum, _backtrack(nums[:-1], multipliers[1:], cur_sum))
+
+        return max_sum
+
+    return _backtrack(nums, multipliers)
+
+
+print(max_score([1,2,3], [3,2,1]) == 14)
+print(max_score([-5,-3,-3,-2,7,1], [-10,-5,3,4,6]) == 102)
