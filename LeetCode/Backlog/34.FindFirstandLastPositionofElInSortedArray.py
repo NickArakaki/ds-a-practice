@@ -9,28 +9,41 @@
 
 
 def search_range(nums: list[int], target: int) -> list[int]:
-    # start = end = -1
+    start = end = -1
+
     # two bin search
-    # init l and r pointers
-    # first for start
-    # iterate while l <= r
+    l, r = 0, len(nums) - 1
+    while l <= r:
         # calculate mid
-        # if mid == 0 or nums[mid - 1] < target and nums[mid] == target, found start
-        # elif nums[mid] > target: search right
-        # else search left
+        mid = (l + (r - l)) // 2
+        if (mid == 0 or nums[mid - 1] < target) and nums[mid] == target:
+            start = mid
+            break
+        elif nums[mid] > target:
+            r = mid - 1
+        else:
+            l = mid + 1
 
     # second for end
-    # set l pointer to start if start >= -1 else 0, r pointer to end of nums
-    # while l <= r:
-        # calculate mid
-        # if mid == len(nums) - 1 or nums[mid + 1] > target and nums[mid] == target, found end
-        # elif nums[mid] < target: search left
-        # else: search right
+    if start == -1:
+        return [start, end]
 
-    # return [start, end]
+    l, r = start, len(nums) - 1
+    while l <= r:
+        mid = (l + (r - l)) // 2
+        if (mid == len(nums) - 1 or nums[mid + 1] > target) and nums[mid] == target:
+            end = mid
+            break
+        elif nums[mid] < target:
+            r = mid - 1
+        else:
+            l = mid + 1
+
+    return [start, end]
 
 
 
 print(search_range([5,7,7,8,8,10], 8) == [3,4])
 print(search_range([5,7,7,8,8,10], 6) == [-1,-1])
+print(search_range([5], 5) == [0,0])
 print(search_range([], 0) == [-1, -1])
