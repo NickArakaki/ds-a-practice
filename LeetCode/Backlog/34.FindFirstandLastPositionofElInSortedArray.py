@@ -15,14 +15,14 @@ def search_range(nums: list[int], target: int) -> list[int]:
     l, r = 0, len(nums) - 1
     while l <= r:
         # calculate mid
-        mid = (l + (r - l)) // 2
+        mid = l + (r - l) // 2
         if (mid == 0 or nums[mid - 1] < target) and nums[mid] == target:
             start = mid
             break
-        elif nums[mid] > target:
-            r = mid - 1
-        else:
+        elif nums[mid] < target:
             l = mid + 1
+        else:
+            r = mid - 1
 
     # second for end
     if start == -1:
@@ -30,11 +30,11 @@ def search_range(nums: list[int], target: int) -> list[int]:
 
     l, r = start, len(nums) - 1
     while l <= r:
-        mid = (l + (r - l)) // 2
+        mid = l + (r - l) // 2
         if (mid == len(nums) - 1 or nums[mid + 1] > target) and nums[mid] == target:
             end = mid
             break
-        elif nums[mid] < target:
+        elif nums[mid] > target:
             r = mid - 1
         else:
             l = mid + 1
