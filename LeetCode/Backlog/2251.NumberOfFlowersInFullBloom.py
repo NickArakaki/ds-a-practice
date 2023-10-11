@@ -9,26 +9,42 @@ flowers that are in full bloom when the ith person arrives.
 """
 
 
+# def full_bloom_flowers(flowers: list[list[int]], people: list[int]) -> list[int]:
+#     # use a hash to store previously calculated vals for people and num flowers in bloom
+#     # init res list
+#     flower_count = {}
+#     res = []
+#     # iterate through people
+#     for person in people:
+#         # init count
+#         count = 0
+#         # if person not in hash
+#         if person not in flower_count:
+#             # iterate through flowers
+#             for start, end in flowers:
+#                 # check person in range of flower and increment count
+#                 if start <= person <= end:
+#                     count += 1
+#             flower_count[person] = count
+#         count = flower_count[person]
+#         res.append(count)
+#     return res
+
+
+# Heap solution
 def full_bloom_flowers(flowers: list[list[int]], people: list[int]) -> list[int]:
-    # use a hash to store previously calculated vals for people and num flowers in bloom
-    # init res list
-    flower_count = {}
-    res = []
-    # iterate through people
-    for person in people:
-        # init count
-        count = 0
-        # if person not in hash
-        if person not in flower_count:
-            # iterate through flowers
-            for start, end in flowers:
-                # check person in range of flower and increment count
-                if start <= person <= end:
-                    count += 1
-            flower_count[person] = count
-        count = flower_count[person]
-        res.append(count)
-    return res
+    # init count
+    # init res list initiall filled with 0s of len people
+    # init 2 heaps, one for start and one for end
+    # iterate through sorted list of people
+        # while start heap and start heap[0] <= person
+            # pop from heap
+            # increment count
+        # do same for end, except check for < and decrement count for each el popped
+        # res[i] = count
+    # return res
+
+    pass
 
 
 print(full_bloom_flowers([[1,6],[3,7],[9,12],[4,13]], [2,3,7,11]) == [1,2,2,2])
