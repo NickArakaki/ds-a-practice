@@ -10,6 +10,18 @@ flowers that are in full bloom when the ith person arrives.
 
 
 def full_bloom_flowers(flowers: list[list[int]], people: list[int]) -> list[int]:
+    # use a hash to store previously calculated vals for people and num flowers in bloom
+    # init res list
+    # iterate through people
+        # init count
+        # iterate through flowers
+            # if person not in hash
+                # check person in range of flower and increment count
+            # add person and count to hash
+            # add count to res
+    # return res
+
+
     pass
 
 
