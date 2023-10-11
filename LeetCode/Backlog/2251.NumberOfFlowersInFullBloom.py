@@ -32,19 +32,36 @@ flowers that are in full bloom when the ith person arrives.
 
 
 # Heap solution
+from heapq import heapify, heappop
+
 def full_bloom_flowers(flowers: list[list[int]], people: list[int]) -> list[int]:
     # init count
     # init res list initiall filled with 0s of len people
+    count = 0
+    res = [0] * len(people)
     # init 2 heaps, one for start and one for end
-    # iterate through sorted list of people
-        # while start heap and start heap[0] <= person
-            # pop from heap
-            # increment count
-        # do same for end, except check for < and decrement count for each el popped
-        # res[i] = count
-    # return res
+    start = [flower[0] for flower in flowers]
+    end = [flower[1] for flower in flowers]
+    heapify(start)
+    heapify(end)
 
-    pass
+    # iterate through sorted list of people
+    for person, idx in sorted([(p, i) for i, p in enumerate(people)]):
+        # while start heap and start heap[0] <= person
+        while start and start[0] <= person:
+            # pop from heap
+            heappop(start)
+            # increment count
+            count += 1
+
+        # do same for end, except check for < and decrement count for each el popped
+        while end and end[0] < person:
+            heappop(end)
+            count -= 1
+
+        res[idx] = count
+
+    return res
 
 
 print(full_bloom_flowers([[1,6],[3,7],[9,12],[4,13]], [2,3,7,11]) == [1,2,2,2])
