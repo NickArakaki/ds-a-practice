@@ -32,35 +32,54 @@ flowers that are in full bloom when the ith person arrives.
 
 
 # Heap solution
-from heapq import heapify, heappop
+from heapq import heapify, heappop, heappush
+
+# def full_bloom_flowers(flowers: list[list[int]], people: list[int]) -> list[int]:
+#     # init count
+#     # init res list initiall filled with 0s of len people
+#     count = 0
+#     res = [0] * len(people)
+#     # init 2 heaps, one for start and one for end
+#     start = [flower[0] for flower in flowers]
+#     end = [flower[1] for flower in flowers]
+#     heapify(start)
+#     heapify(end)
+
+#     # iterate through sorted list of people
+#     for person, idx in sorted([(p, i) for i, p in enumerate(people)]):
+#         # while start heap and start heap[0] <= person
+#         while start and start[0] <= person:
+#             # pop from heap
+#             heappop(start)
+#             # increment count
+#             count += 1
+
+#         # do same for end, except check for < and decrement count for each el popped
+#         while end and end[0] < person:
+#             heappop(end)
+#             count -= 1
+
+#         res[idx] = count
+
+#     return res
+
 
 def full_bloom_flowers(flowers: list[list[int]], people: list[int]) -> list[int]:
-    # init count
-    # init res list initiall filled with 0s of len people
-    count = 0
     res = [0] * len(people)
-    # init 2 heaps, one for start and one for end
-    start = [flower[0] for flower in flowers]
-    end = [flower[1] for flower in flowers]
-    heapify(start)
-    heapify(end)
+    flowers.sort()
+    end = []
 
-    # iterate through sorted list of people
-    for person, idx in sorted([(p, i) for i, p in enumerate(people)]):
-        # while start heap and start heap[0] <= person
-        while start and start[0] <= person:
-            # pop from heap
-            heappop(start)
-            # increment count
-            count += 1
+    j = 0
+    for person, idx in sorted([(person, idx) for idx, person in enumerate(people)]):
 
-        # do same for end, except check for < and decrement count for each el popped
+        while j < len(flowers) and flowers[j][0] <= person:
+            heappush(end, flowers[j][1])
+            j += 1
+
         while end and end[0] < person:
             heappop(end)
-            count -= 1
 
-        res[idx] = count
-
+        res[idx] = len(end)
     return res
 
 
