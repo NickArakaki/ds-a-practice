@@ -52,23 +52,43 @@ from collections import deque
 #     # if we get to end of queue without making it to the end of the matrix return -1
 #     return -1
 
+from heapq import heappop, heappush, heapify
+from math import sqrt
 # A* method
 def shortest_path_binary_matrix(grid: list[list[int]]) -> int:
     # if start or end is a 1 return -1, there needs to be a clear path
-    # init heap
-    # add ((end_row - row / (end_col - col)),1,0,0) to heap => (a_heuristic, cur_len, r, c)
-    # create a visited set with start coord
-    # iterate while heap is not empty
-        # unpack as popped off (a_heur, cur_len, r, c)
-        # if r,c == end_r, end_c: return cur_len
-        # iterate thru neighbors
-            # check if in bound and not 1 and not visited
-                # calculate dist to end
-                # increment cur_len
-                # add r, c to visited
-    # return -1
-    pass
+    end_r, end_c = len(grid) - 1, len(grid[0]) - 1
+    if grid[0][0] == 1 or grid[end_r][end_c] == 1:
+        return - 1
 
-print(shortest_path_binary_matrix([[0,1],[1,0]])) # 2
-print(shortest_path_binary_matrix([[0,0,0],[1,1,0],[1,1,0]])) # 4
-print(shortest_path_binary_matrix([[1,0,0],[1,1,0],[1,1,0]])) # -1
+    priority_queue = []
+    heapify(priority_queue)
+    heappush(priority_queue, (sqrt((end_r**2) + (end_c**2)), 1, 0, 0))
+    visited = set()
+    visited.add((0,0))
+
+    neighbors = ((0,1),(1,0),(0,-1),(-1,0),(1,1),(-1,1),(1,-1),(-1,-1))
+
+    def _is_inbound(r,c):
+        r_inbound = 0 <= r < len(grid)
+        c_inbound = 0 <= c < len(grid[0])
+        return r_inbound and c_inbound
+
+    while priority_queue:
+        _, cur_len, r, c = heappop(priority_queue)
+        if (r, c) == (end_r, end_c):
+            return cur_len
+
+        for neighbor_r, neighbor_c in neighbors:
+            new_row = r + neighbor_r
+            new_col = c + neighbor_c
+
+            if _is_inbound(new_row, new_col) and grid[new_row][new_col] == 0 and (new_row, new_col) not in visited:
+                end_dist = sqrt((end_r - new_row)**2 + (end_c - new_col)**2)
+                heappush(priority_queue, (end_dist, cur_len + 1, new_row, new_col))
+                visited.add((new_row, new_col))
+    return -1
+
+print(shortest_path_binary_matrix([[0,1],[1,0]]) == 2) # 2
+print(shortest_path_binary_matrix([[0,0,0],[1,1,0],[1,1,0]]) == 4) # 4
+print(shortest_path_binary_matrix([[1,0,0],[1,1,0],[1,1,0]]) == -1) # -1
