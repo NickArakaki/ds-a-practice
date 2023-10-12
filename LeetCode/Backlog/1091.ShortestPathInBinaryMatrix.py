@@ -63,7 +63,7 @@ def shortest_path_binary_matrix(grid: list[list[int]]) -> int:
 
     priority_queue = []
     heapify(priority_queue)
-    heappush(priority_queue, (sqrt((end_r**2) + (end_c**2)), 1, 0, 0))
+    heappush(priority_queue, (sqrt((end_r**2) + (end_c**2)) + 1, 1, 0, 0))
     visited = set()
     visited.add((0,0))
 
@@ -75,7 +75,7 @@ def shortest_path_binary_matrix(grid: list[list[int]]) -> int:
         return r_inbound and c_inbound
 
     while priority_queue:
-        _, cur_len, r, c = heappop(priority_queue)
+        heuristic, cur_len, r, c = heappop(priority_queue)
         if (r, c) == (end_r, end_c):
             return cur_len
 
@@ -84,11 +84,29 @@ def shortest_path_binary_matrix(grid: list[list[int]]) -> int:
             new_col = c + neighbor_c
 
             if _is_inbound(new_row, new_col) and grid[new_row][new_col] == 0 and (new_row, new_col) not in visited:
-                end_dist = sqrt((end_r - new_row)**2 + (end_c - new_col)**2)
+                end_dist = sqrt((end_r - new_row)**2 + (end_c - new_col)**2) + heuristic
                 heappush(priority_queue, (end_dist, cur_len + 1, new_row, new_col))
                 visited.add((new_row, new_col))
     return -1
 
 print(shortest_path_binary_matrix([[0,1],[1,0]]) == 2) # 2
+print(shortest_path_binary_matrix([[0,0,0,0,0,0,0,0,0],
+                                   [0,1,1,0,0,0,0,0,0],
+                                   [1,0,0,1,0,0,0,0,0],
+                                   [0,1,0,0,1,1,0,0,1],
+                                   [0,0,1,0,0,1,0,0,1],
+                                   [0,1,0,1,0,0,1,1,0],
+                                   [0,0,0,0,0,1,0,0,0],
+                                   [0,1,0,1,0,0,1,0,0],
+                                   [0,1,1,0,0,0,0,1,0]]) == 10) # 2
+print(shortest_path_binary_matrix([[0,0,0,0,1,1,1,1,0],
+                                   [0,1,1,0,0,0,0,1,0],
+                                   [0,0,1,0,0,0,0,0,0],
+                                   [1,1,0,0,1,0,0,1,1],
+                                   [0,0,1,1,1,0,1,0,1],
+                                   [0,1,0,1,0,0,0,0,0],
+                                   [0,0,0,1,0,1,0,0,0],
+                                   [0,1,0,1,1,0,0,0,0],
+                                   [0,0,0,0,0,1,0,1,0]]) == 11)
 print(shortest_path_binary_matrix([[0,0,0],[1,1,0],[1,1,0]]) == 4) # 4
 print(shortest_path_binary_matrix([[1,0,0],[1,1,0],[1,1,0]]) == -1) # -1
