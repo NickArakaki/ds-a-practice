@@ -52,9 +52,21 @@ from collections import deque
 #     # if we get to end of queue without making it to the end of the matrix return -1
 #     return -1
 
+# A* method
 def shortest_path_binary_matrix(grid: list[list[int]]) -> int:
     # if start or end is a 1 return -1, there needs to be a clear path
-    #
+    # init heap
+    # add ((end_row - row / (end_col - col)),1,0,0) to heap => (a_heuristic, cur_len, r, c)
+    # create a visited set with start coord
+    # iterate while heap is not empty
+        # unpack as popped off (a_heur, cur_len, r, c)
+        # if r,c == end_r, end_c: return cur_len
+        # iterate thru neighbors
+            # check if in bound and not 1 and not visited
+                # calculate dist to end
+                # increment cur_len
+                # add r, c to visited
+    # return -1
     pass
 
 print(shortest_path_binary_matrix([[0,1],[1,0]])) # 2
