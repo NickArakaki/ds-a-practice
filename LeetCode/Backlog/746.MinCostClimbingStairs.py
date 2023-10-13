@@ -14,7 +14,11 @@ def min_cost_climbing_stairs(cost: list[int]) -> int:
         # min cost to reach current stair = min(cost[-1] + total_cost[-1], cost[-2] + total_cost[-2])
         # add to total_cost[i]
     # return the min(total_cost[-1], total_cost[-2])
-    pass
+    dp = [0,0]
+    for i in range(2, len(cost) + 1):
+        dp.append(min(cost[i - 1] + dp[-1], cost[i - 2] + dp[-2]))
+
+    return dp[-1]
 
 
 print(min_cost_climbing_stairs([10,15,20]) == 15)
