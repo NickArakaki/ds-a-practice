@@ -8,12 +8,6 @@ Return the minimum cost to reach the top of the floor.
 """
 
 def min_cost_climbing_stairs(cost: list[int]) -> int:
-    # use a dp list to calculate the min cost to climb to that position
-        # init list [0, 0] -> no initial cost
-        # iterate through 2 -> end of list
-        # min cost to reach current stair = min(cost[-1] + total_cost[-1], cost[-2] + total_cost[-2])
-        # add to total_cost[i]
-    # return the min(total_cost[-1], total_cost[-2])
     dp = [0,0]
     for i in range(2, len(cost) + 1):
         dp.append(min(cost[i - 1] + dp[-1], cost[i - 2] + dp[-2]))
