@@ -23,13 +23,9 @@ def maxEnergy(mat: list[list[int]]) -> int:
         cur_cost = []
 
         for j, val in enumerate(row):
-            l = r = float("inf")
+            l = float("inf") if j <= 0 else dp[j - 1]
+            r = float("inf") if j >= len(row) - 1 else dp[j + 1]
             c = dp[j]
-
-            if j > 0:
-                l = dp[j - 1]
-            if j < len(row) - 1:
-                r = dp[j + 1]
             cur_cost.append(val + min(l,r,c))
 
         dp = cur_cost
