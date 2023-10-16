@@ -11,8 +11,6 @@ After stepping on a cell (i, j), energy decreases by mat[i][j] units. Find the m
 energy left at the end of the traversal
 
 Note: final energy can be negative
-
-
 """
 
 def maxEnergy(mat: list[list[int]]) -> int:
