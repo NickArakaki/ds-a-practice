@@ -11,13 +11,16 @@ Note that the nodes have no values and that we only use the node numbers in this
 
 def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[int]) -> bool:
     # create a set of nodes, init with 0th node
-    # iterate through l and r children lists
-        # if parent node (i) not in node_set, return false, there's a disconnect somewhere
-        # if l_child[i] in node_set or r_child[i] in node_set, return false there's a cycle
-        # add l_child[i] and r_child[i] to node_set if val > 0
-    # return True
-    pass
-
+    node_set = set()
+    node_set.add(0)
+    for parent in range(n):
+        l_child = leftChild[parent]
+        r_child = rightChild[parent]
+        if (parent not in node_set) or (l_child in node_set) or (r_child in node_set):
+            return False
+        if l_child > 0: node_set.add(l_child)
+        if r_child > 0: node_set.add(r_child)
+    return True
 
 print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,-1,-1,-1]) == True)
 print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,3,-1,-1]) == False)
