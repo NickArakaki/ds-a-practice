@@ -32,7 +32,7 @@ def is_valid_binary_tree(root, leftChild, rightChild):
             visited.add(l_child)
             queue.append(l_child)
 
-    return True if len(visited) == len(leftChild)
+    return True if len(visited) == len(leftChild) else False
 
 
 def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[int]) -> bool:
