@@ -8,46 +8,54 @@ Note that the nodes have no values and that we only use the node numbers in this
 
 
 """
+from collections import deque
 
-# def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[int]) -> bool:
-#     # create a set of nodes, init with 0th node
-#     node_set = set()
-#     node_set.add(0)
-#     for parent in range(n):
-#         l_child = leftChild[parent]
-#         r_child = rightChild[parent]
-#         if (parent not in node_set) or (l_child in node_set) or (r_child in node_set):
-#             return False
-#         if l_child > 0: node_set.add(l_child)
-#         if r_child > 0: node_set.add(r_child)
-#     return True
+def is_valid_binary_tree(root, leftChild, rightChild):
+    queue = deque()
+    queue.append(root)
+    visited = set()
+    visited.add(root)
+
+    while queue:
+        cur_node = queue.popleft()
+        l_child = leftChild[cur_node]
+        r_child = rightChild[cur_node]
+
+        if l_child in visited or r_child in visited:
+            return False
+
+        if l_child > -1:
+            visited.add(l_child)
+            queue.append(l_child)
+
+        if r_child > -1:
+            visited.add(l_child)
+            queue.append(l_child)
+
+    return True
+
 
 def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[int]) -> bool:
     # create list child_count of len n, tracks which nodes have parents
-    # iterate thru range n
-        # if l child exists set child_cound[l] = true
-        # if r child exists set child_count[r] = true
+    has_parent_list = [False] * n
+    for node in range(n):
+        l_child = leftChild[node]
+        r_child = rightChild[node]
+
+        if l_child > -1: has_parent_list[l_child] = True
+        if r_child > -1: has_parent_list[r_child] = True
 
     # init root tracker -1
-    # iterate thru child_count
-        # if node has no parent
-            # if root == -1:
-                # root = cur_node
-            # else:
-                # return False, multiple root nodes
+    cur_root = -1
+    for node, has_parent in enumerate(has_parent_list):
+        if not has_parent:
+            if cur_root == -1:
+                cur_root = node
+            else:
+                return False
 
-    # is_valid_bin_tree
-        # init queue with root node
-        # visited = set()
-        # visited.add(root)
+    return is_valid_binary_tree(cur_root, leftChild, rightChild)
 
-        # while queue
-            # remove node
-            # children = leftChild[node], rightChild[node]
-            # if either child in visited return False, there's a cycle
-            # add children that exist to visited and queue
-
-        # return True
 
 
 
