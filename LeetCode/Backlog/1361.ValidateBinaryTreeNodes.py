@@ -10,6 +10,12 @@ Note that the nodes have no values and that we only use the node numbers in this
 """
 
 def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[int]) -> bool:
+    # create a set of nodes, init with 0th node
+    # iterate through l and r children lists
+        # if parent node (i) not in node_set, return false, there's a disconnect somewhere
+        # if l_child[i] in node_set or r_child[i] in node_set, return false there's a cycle
+        # add l_child[i] and r_child[i] to node_set if val > 0
+    # return True
     pass
 
 
