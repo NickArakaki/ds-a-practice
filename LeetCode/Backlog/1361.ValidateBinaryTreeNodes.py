@@ -22,6 +22,7 @@ def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[in
         if r_child > 0: node_set.add(r_child)
     return True
 
-print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,-1,-1,-1]) == True)
-print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,3,-1,-1]) == False)
-print(validate_binary_tree_nodes(n = 2, leftChild = [1,0], rightChild = [-1,-1]) == False)
+# print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,-1,-1,-1]) == True)
+# print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,3,-1,-1]) == False)
+# print(validate_binary_tree_nodes(n = 2, leftChild = [1,0], rightChild = [-1,-1]) == False)
+print(validate_binary_tree_nodes(4, [3,-1,1,-1], [-1,-1,0,-1]) == True)
