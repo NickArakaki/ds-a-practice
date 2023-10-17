@@ -32,7 +32,7 @@ def is_valid_binary_tree(root, leftChild, rightChild):
             visited.add(l_child)
             queue.append(l_child)
 
-    return True
+    return True if len(visited) == len(leftChild)
 
 
 def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[int]) -> bool:
@@ -59,7 +59,7 @@ def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[in
 
 
 
-# print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,-1,-1,-1]) == True)
-# print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,3,-1,-1]) == False)
-# print(validate_binary_tree_nodes(n = 2, leftChild = [1,0], rightChild = [-1,-1]) == False)
+print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,-1,-1,-1]) == True)
+print(validate_binary_tree_nodes(4, [1,-1,3,-1], [2,3,-1,-1]) == False)
+print(validate_binary_tree_nodes(n = 2, leftChild = [1,0], rightChild = [-1,-1]) == False)
 print(validate_binary_tree_nodes(4, [3,-1,1,-1], [-1,-1,0,-1]) == True)
