@@ -23,27 +23,31 @@ Note that the nodes have no values and that we only use the node numbers in this
 #     return True
 
 def validate_binary_tree_nodes(n: int, leftChild: list[int], rightChild: list[int]) -> bool:
-    # init hashmap {node: [parent_set, children_set]} => { 0: { parent: None, children: set() }}
+    # create list child_count of len n, tracks which nodes have parents
+    # iterate thru range n
+        # if l child exists set child_cound[l] = true
+        # if r child exists set child_count[r] = true
 
-    # iterate through list of nodes
-        # if node not in map there is a disconnect return false
-        # if l_child or r_child == cur_node return False
+    # init root tracker -1
+    # iterate thru child_count
+        # if node has no parent
+            # if root == -1:
+                # root = cur_node
+            # else:
+                # return False, multiple root nodes
 
-        # if l_child not in hashmap
-            # hashmap[l_child] = { parent: cur_node, childrent: set() }
-        # else
-            # if hashmap[l_child].parent is not None:
-                # return False
-            # else hashmap[l_child] = cur_node
+    # is_valid_bin_tree
+        # init queue with root node
+        # visited = set()
+        # visited.add(root)
 
-        # if r_child not in hashmap
-            # hashmap[r_child] = { parent: cur_node, childrent: set() }
-        # else
-            # if hashmap[r_child].parent is not None:
-                # return False
-            # else hashmap[r_child] = cur_node
+        # while queue
+            # remove node
+            # children = leftChild[node], rightChild[node]
+            # if either child in visited return False, there's a cycle
+            # add children that exist to visited and queue
 
-    # return true
+        # return True
 
 
 
