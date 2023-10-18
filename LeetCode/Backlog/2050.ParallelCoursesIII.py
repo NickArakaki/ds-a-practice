@@ -16,6 +16,25 @@ Note: The test cases are generated such that it is possible to complete every co
 """
 
 def minimum_time(n: int, relations: list[list[int]], time: list[int]) -> int:
+    # calculate time needed to complete each course
+    # normalize relations -> { course: [pre-reqs...] }
+    # cache = { course: min_time needed }
+    # iterate through range (1, n + 1)
+        # _recursive func (course)
+            # if not normaized_relations[course]:
+                # return time[course - 1]
+            # if course in cache:
+                # return cache[course]
+
+            # cost = 0
+            # prereqs = normalized_relations[course]
+            # for prereq in prereqs:
+                # cost = max(cost, _recursivefunc(prereq))
+            # cache[course] = cost
+
+    # list end nodes
+    # iterate over end nodes, key into cache and add val to res
+    # return res
     pass
 
 
