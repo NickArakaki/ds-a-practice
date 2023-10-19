@@ -17,31 +17,11 @@ Note: The test cases are generated such that it is possible to complete every co
 from collections import defaultdict
 
 def minimum_time(n: int, relations: list[list[int]], time: list[int]) -> int:
-    # calculate time needed to complete each course
-    # normalize relations -> { course: [pre-reqs...] }
-    # cache = { course: min_time needed }
-    # iterate through range (1, n + 1)
-        # _recursive func (course)
-            # if not normaized_relations[course]:
-                # return time[course - 1]
-            # if course in cache:
-                # return cache[course]
-
-            # cost = 0
-            # prereqs = normalized_relations[course]
-            # for prereq in prereqs:
-                # cost = max(cost, _recursivefunc(prereq))
-            # cache[course] = cost
-
-    # list end nodes
-    # iterate over end nodes, key into cache and get max of the vals
-    # return res
     prereqs = defaultdict(list)
-    final_courses = set()
+    prereq_set = set()
     for prereq, course in relations:
         prereqs[course].append(prereq)
-        final_courses.add(course)
-        final_courses.discard(prereq)
+        prereq_set.add(prereq)
 
     cache = {}
     def _calculate_min_time(course: int) -> int:
@@ -60,7 +40,11 @@ def minimum_time(n: int, relations: list[list[int]], time: list[int]) -> int:
         cache[course] = cost
         return cost
 
+    final_courses = []
     for course in range(1, n + 1):
+        if course not in prereq_set:
+            final_courses.append(course)
+
         _calculate_min_time(course)
 
     res = 0
@@ -74,3 +58,4 @@ def minimum_time(n: int, relations: list[list[int]], time: list[int]) -> int:
 print(minimum_time(n = 3, relations = [[1,3],[2,3]], time = [3,2,5]) == 8)
 print(minimum_time(n = 5, relations = [[1,5],[2,5],[3,5],[3,4],[4,5]], time = [1,2,3,4,5]) == 12)
 print(minimum_time(n = 11, relations=[[1,2],[3,4],[10,11],[2,5],[4,5],[5,6],[6,7],[5,8],[5,9]], time=[1,2,3,4,5,6,7,8,9,10,11]) == 25)
+print(minimum_time(n = 1, relations=[], time=[1]) == 1)
