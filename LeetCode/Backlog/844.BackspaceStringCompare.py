@@ -51,20 +51,21 @@ def backspace_compare(s: str, t: str) -> bool:
     for i in range(len(s)):
         if s_stack and s[i] == "#":
             s_stack.pop()
-        else:
+        if s[i] != "#":
             s_stack.append(s[i])
 
     for i in range(len(t)):
         if t_stack and t[i] == "#":
             t_stack.pop()
-        else:
+        if t[i] != "#":
             t_stack.append(t[i])
 
     return s_stack == t_stack
 
 
 
-print(backspace_compare("ab#c", "ad#c") == True)
-print(backspace_compare("ab##", "c#d#") == True)
-print(backspace_compare("a#c", "b") == False)
-print(backspace_compare("#", "#########") == True)
+# print(backspace_compare("ab#c", "ad#c") == True)
+# print(backspace_compare("ab##", "c#d#") == True)
+# print(backspace_compare("a#c", "b") == False)
+# print(backspace_compare("#", "#########") == True)
+print(backspace_compare("y#fo##f", "y#f#o##f") == True)
