@@ -63,22 +63,59 @@ can eliminate all the monsters before they reach the city.
 // }
 
 // Second attempt
+// const eliminateMaximum = (dist, speed) => {
+//   /*
+//         Plan:
+//         1. iterate through distances and calculate the number of minutes it takes to reach the city
+//         2. sort by number of rounds it takes to end
+//         3. iterate through rounds to end
+//             3a. if rounds to end[i] <= i return i
+//         4. return n
+//     */
+//   const n = dist.length;
+//   dist.forEach((d, i) => {
+//     dist[i] = Math.ceil(d / speed[i]);
+//   });
+//   dist.sort((a, b) => a - b);
+//   for (let i = 0; i < n; i++) {
+//     if (dist[i] <= i) return i;
+//   }
+
+//   return n;
+// };
+
+// Third attempt
 const eliminateMaximum = (dist, speed) => {
   /*
         Plan:
-        1. iterate through distances and calculate the number of minutes it takes to reach the city
-        2. sort by number of rounds it takes to end
-        3. iterate through rounds to end
-            3a. if rounds to end[i] <= i return i
-        4. return n
+        1a. iterate over distances and calc the num rounds the monster needs to reach the city
+        1b. set speed for that monster to 0, we will use this to optimize memory
+
+        2a. iterate over distances again, should now be the number of rounds needed to reach the city
+            2b. if the number of rounds needed to reach the city is less than the number of monsters, increment speed[numberOfRounds]
+            Note: speed is now tracking the number of monsters that will reach the city at that minute
+
+        3a. Iterate from 1 to n, assuming we can always eliminate at least one monster since distances are at least 1
+            3b. calculate the total number of monsters that will reach the city after i minutes
+            3c. if the total number of monsters that reach the city is greater than the number of minutes that have passed
+                return the number of minutes that have passed
+
+        4. return n, we were able to eliminate all monsters
     */
+
   const n = dist.length;
   dist.forEach((d, i) => {
     dist[i] = Math.ceil(d / speed[i]);
+    speed[i] = 0;
   });
-  dist.sort((a, b) => a - b);
-  for (let i = 0; i < n; i++) {
-    if (dist[i] <= i) return i;
+
+  for (const numRounds of dist) {
+    if (numRounds < n) speed[numRounds] += 1;
+  }
+
+  for (let i = 1; i < n; i++) {
+    speed[i] += speed[i - 1];
+    if (speed[i] > i) return i;
   }
 
   return n;
