@@ -33,33 +33,55 @@ can eliminate all the monsters before they reach the city.
       A monster has reached 0 before you could reload therefore the max num eliminated is 1
 */
 
-function eliminateMaximum(dist, speed) {
+// function eliminateMaximum(dist, speed) {
+//   /*
+//     Plan
+//     1. combine distance and speed into nested array [[dist[0], speed[0], ...]]
+//     2. sort combined array by distance (desc), and if distances are equal sort by speed (asc)
+//     3. track number of minutes that have passed, starting at 0
+//     4. iterate through sorted array
+//         4a. calculate the distance travelled, distance - speed * mins passed
+//         4b. if distance travelled is less than or equal to 0 then we cannot eliminate that monster before it reaches the city, return min passed
+//     5. return the number of monsters, if we get through all the monsters without returning we can eliminate all of them
+//   */
+//   const n = dist.length;
+//   const combined_arr = dist.map((dist, idx) => {
+//     return [dist, speed[idx]];
+//   });
+//   combined_arr.sort((a, b) => {
+//     return a[0] / a[1] - b[0] / b[1] || b[1] - a[1];
+//   });
+
+//   for (let i = 0; i < n; i++) {
+//     const [dist, speed] = combined_arr[i];
+//     const dist_travelled = dist - speed * i;
+
+//     if (dist_travelled <= 0) return i;
+//   }
+
+//   return n;
+// }
+
+// Second attempt
+const eliminateMaximum = (dist, speed) => {
   /*
-    Plan
-    1. combine distance and speed into nested array [[dist[0], speed[0], ...]]
-    2. sort combined array by distance (desc), and if distances are equal sort by speed (asc)
-    3. track number of minutes that have passed, starting at 0
-    4. iterate through sorted array
-        4a. calculate the distance travelled, distance - speed * mins passed
-        4b. if distance travelled is less than or equal to 0 then we cannot eliminate that monster before it reaches the city, return min passed
-    5. return the number of monsters, if we get through all the monsters without returning we can eliminate all of them
-  */
+        Plan:
+        1. iterate through distances and calculate the number of minutes it takes to reach the city
+        2. sort by number of rounds it takes to end
+        3. iterate through rounds to end
+            3a. if rounds to end[i] <= i return i
+        4. return n
+    */
   const n = dist.length;
-  const combined_arr = dist.map((dist, idx) => {
-    return [dist, speed[idx]];
+  dist.forEach((d, i) => {
+    dist[i] = Math.ceil(d / speed[i]);
   });
-  combined_arr.sort((a, b) => {
-    return a[0] / a[1] - b[0] / b[1] || b[1] - a[1];
-  });
-
+  dist.sort((a, b) => a - b);
   for (let i = 0; i < n; i++) {
-    const [dist, speed] = combined_arr[i];
-    const dist_travelled = dist - speed * i;
-
-    if (dist_travelled <= 0) return i;
+    if (dist[i] <= i) return i;
   }
 
   return n;
-}
+};
 
 exports.eliminateMaximum = eliminateMaximum;
