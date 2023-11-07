@@ -1,0 +1,23 @@
+{
+  "name": "ds-a-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "aa-application.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NickArakaki/ds-a-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NickArakaki/ds-a-practice/issues"
+  },
+  "homepage": "https://github.com/NickArakaki/ds-a-practice#readme",
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
+}
