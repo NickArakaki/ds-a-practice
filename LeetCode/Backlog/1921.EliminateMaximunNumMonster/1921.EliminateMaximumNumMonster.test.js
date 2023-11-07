@@ -1,4 +1,4 @@
-const eliminateMaximum = require("./1921.EliminateMaximumNumMonster");
+const { eliminateMaximum } = require("./1921.EliminateMaximumNumMonster");
 
 describe("Eliminate Max Number of Monsters", () => {
   it("should return 3", () => {

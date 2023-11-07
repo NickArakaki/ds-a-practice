@@ -32,21 +32,17 @@ can eliminate all the monsters before they reach the city.
       dist = [X, 0, 1, 2] speed = [X, 1, 1, 1]
       A monster has reached 0 before you could reload therefore the max num eliminated is 1
 */
-
 function eliminateMaximum(dist, speed) {
   /*
-        Plan (brute-force):
-        1. track current minute, init at 0
-
-        2. iterate while current minute <= num monsters or a monster has reached the city
-
-            2a. iterate over monsters
-                2b. if any of the distances are less than or equal to 0, return the current minute, can only eliminate 1 monster/min
-                2c. find the monster that is closest with the highest speed
-
-            2. remove the monster, replace the distance at idx with null
-            3. increment minute
-
-        4. return length of the
-*/
+    Plan
+    1. combine distance and speed into nested array [[dist[0], speed[0], ...]]
+    2. sort combined array by distance (desc), and if distances are equal sort by speed (asc)
+    3. track number of minutes that have passed, starting at 0
+    4. iterate through sorted array
+        4a. calculate the distance travelled, distance - speed * mins passed
+        4b. if distance travelled is less than or equal to 0 then we cannot eliminate that monster before it reaches the city, return min passed
+    5. return the number of monsters, if we get through all the monsters without returning we can eliminate all of them
+  */
 }
+
+exports.eliminateMaximum = eliminateMaximum;
