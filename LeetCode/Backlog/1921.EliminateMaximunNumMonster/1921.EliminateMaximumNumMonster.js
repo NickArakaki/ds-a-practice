@@ -32,6 +32,7 @@ can eliminate all the monsters before they reach the city.
       dist = [X, 0, 1, 2] speed = [X, 1, 1, 1]
       A monster has reached 0 before you could reload therefore the max num eliminated is 1
 */
+
 function eliminateMaximum(dist, speed) {
   /*
     Plan
@@ -48,7 +49,7 @@ function eliminateMaximum(dist, speed) {
     return [dist, speed[idx]];
   });
   combined_arr.sort((a, b) => {
-    return a[0] - b[0] || b[1] - a[1];
+    return a[0] / a[1] - b[0] / b[1] || b[1] - a[1];
   });
 
   for (let i = 0; i < n; i++) {
