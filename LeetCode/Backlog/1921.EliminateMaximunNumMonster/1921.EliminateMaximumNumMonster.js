@@ -43,6 +43,22 @@ function eliminateMaximum(dist, speed) {
         4b. if distance travelled is less than or equal to 0 then we cannot eliminate that monster before it reaches the city, return min passed
     5. return the number of monsters, if we get through all the monsters without returning we can eliminate all of them
   */
+  const n = dist.length;
+  const combined_arr = dist.map((dist, idx) => {
+    return [dist, speed[idx]];
+  });
+  combined_arr.sort((a, b) => {
+    return a[0] - b[0] || b[1] - a[1];
+  });
+
+  for (let i = 0; i < n; i++) {
+    const [dist, speed] = combined_arr[i];
+    const dist_travelled = dist - speed * i;
+
+    if (dist_travelled <= 0) return i;
+  }
+
+  return n;
 }
 
 exports.eliminateMaximum = eliminateMaximum;
