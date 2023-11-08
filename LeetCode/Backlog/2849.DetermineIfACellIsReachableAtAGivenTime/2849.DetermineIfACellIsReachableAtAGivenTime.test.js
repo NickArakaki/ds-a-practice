@@ -14,4 +14,8 @@ describe("Leet Code 2894. Cell Reachable At A Given Time", () => {
   it("should return true with the input: sx = 1, sy = 1, fx = 2, fy = 2, t = 1", () => {
     expect(isReachableAtTime(1, 1, 2, 2, 1)).toBe(true);
   });
+
+  it("should return false with the input: sx = 1, sy = 2, fx = 1, fy = 2, t = 1", () => {
+    expect(isReachableAtTime(1, 2, 1, 2, 1)).toBe(false);
+  });
 });
