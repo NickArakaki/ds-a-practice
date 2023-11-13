@@ -14,11 +14,22 @@ lowercase or uppercase. Consonants comprise all letters that are not vowels.
 
 const sortVowels = (s) => {
   // list of vowels 'a', 'e', 'i', 'o', 'u' can be upper or lower case
+  const vowels = new Set(["a", "e", "i", "o", "u"]);
+  const chars = s.split("");
   // iterate over s and extract vowels into array
+  const sVowels = chars.filter((char) => vowels.has(char.toLowerCase()));
   // sort vowels array
+  sVowels.sort();
+  let vowelPointer = 0;
   // iterate over s, if current char is a vowel, replace with the first char in the sorted vowel array
+  chars.forEach((char, i) => {
+    if (vowels.has(char.toLowerCase())) {
+      chars[i] = sVowels[vowelPointer];
+      vowelPointer++;
+    }
+  });
   // retrun the new joined s
-  return;
+  return chars.join("");
 };
 
 module.exports.sortVowels = sortVowels;

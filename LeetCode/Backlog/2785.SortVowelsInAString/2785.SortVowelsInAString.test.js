@@ -2,7 +2,7 @@ const { sortVowels } = require("./2785.SortVowelsInAString");
 
 describe("sort vowels", () => {
   it("should return 'lEOtcede'", () => {
-    expect(sortVowels("lEetCOde")).toEqual("lEOtcede");
+    expect(sortVowels("lEetcOde")).toEqual("lEOtcede");
   });
 
   it("should return 'lYmpH'", () => {
