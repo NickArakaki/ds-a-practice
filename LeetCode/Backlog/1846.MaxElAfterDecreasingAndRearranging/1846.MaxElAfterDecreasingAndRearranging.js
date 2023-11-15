@@ -20,12 +20,19 @@
 
 const maxElementAfterDecrementAndRearrange = (arr) => {
   // sort the input arr
-  // check if arr[0] > 1: decrement arr[0] until === 1
+  arr.sort((a, b) => a - b);
+  if (arr[0] !== 1) arr[0] = 1;
+
   // iterate over input arr from 1 -> n
-  // if abs diff between cur and prev > 1:
-  // arr[cur] -= 1 + (cur + prev)
-  // return last el in arr
-  return;
+  for (let i = 1; i < arr.length; i++) {
+    // if abs diff between cur and prev > 1:
+    const cur = arr[i];
+    const prev = arr[i - 1];
+    const diff = Math.abs(cur - prev);
+
+    if (diff > 1) arr[i] = prev + 1;
+  }
+  return arr[arr.length - 1];
 };
 
 module.exports.maxElementAfterDecrementAndRearrange =

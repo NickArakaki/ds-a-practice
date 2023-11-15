@@ -12,6 +12,6 @@ describe("Maximum Element After Decreasing and Rearranging", () => {
   });
 
   it("should return 5 given the input [1,2,3,4,5]", () => {
-    expect(maxElementAfterDecrementAndRearrange([2, 2, 1, 2, 1])).toEqual(5);
+    expect(maxElementAfterDecrementAndRearrange([1, 2, 3, 4, 5])).toEqual(5);
   });
 });
