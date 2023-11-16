@@ -6,12 +6,17 @@
 
 const findDifferentBinString = (nums) => {
   // get max of possible nums, 2**(nums[0].length - 1)
-  //   const max = 2 ** nums[0].length - 1;
+  const numBits = nums[0].length;
   // convert each num to int and store in set
-  // iterate from 0 -> max
-  // if num not in num set
-  // convert to bin string and return
-  return;
+  const numSet = new Set(nums.map((num) => parseInt(num, 2)));
+  const max = 2 ** numBits - 1;
+
+  for (let curNum = 0; curNum <= max; curNum++) {
+    if (!numSet.has(curNum)) {
+      let binString = curNum.toString(2);
+      return "0".repeat(numBits - binString.length) + binString;
+    }
+  }
 };
 
 module.exports.findDifferentBinString = findDifferentBinString;
