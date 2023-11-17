@@ -10,6 +10,25 @@ Given an array nums of even length n, pair up the elements of nums into n / 2 pa
 Return the minimized maximum pair sum after optimally pairing up the elements.
 */
 
-const minPairSum = (nums) => {};
+const minPairSum = (nums) => {
+  // sort nums
+  nums.sort((a, b) => a - b);
+  // track cur max
+  let curMax = -Infinity;
+  // l = 0, r = -1
+  let l = 0;
+  let r = nums.length - 1;
+
+  while (l < r) {
+    curMax = Math.max(curMax, nums[l] + nums[r]);
+    l++;
+    r--;
+  }
+
+  return curMax;
+  // iterate while l and r are not the same
+  // curMax = max(curMax, nums[l] + nums[r])
+  // return curMax
+};
 
 module.exports.minPairSum = minPairSum;
