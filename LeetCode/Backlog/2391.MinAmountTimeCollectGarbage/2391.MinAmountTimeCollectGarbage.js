@@ -17,14 +17,64 @@
     Return the minimum number of minutes needed to pick up all the garbage.
 */
 
+// const garbageCollection = (garbage, travel) => {
+//   travel.push(0);
+//   // track total time
+//   let totalTime = 0;
+//   // track the total time travelling
+//   let travelTime = 0;
+//   // iterate over houses (garbage)
+//   for (let i = 0; i < garbage.length; i++) {
+//     // count the occurances of each type of trash at each house
+//     // const house = garbage[i];
+//     // const garbageCount = {};
+//     // for (let char of house) {
+//     //   if (!(char in garbageCount)) {
+//     //     garbageCount[char] = 1;
+//     //   } else {
+//     //     garbageCount[char]++;
+//     //   }
+//     // }
+
+//     // for (let time of Object.values(garbageCount)) {
+//     //   totalTime += time;
+//     // }
+//     totalTime += garbage[i].length;
+
+//     travelTime += travel[i];
+//   }
+
+//   const finalSet = new Set();
+//   for (let i = garbage.length - 1; i >= 0; i--) {
+//     for (const char of garbage[i]) {
+//       finalSet.add(char);
+//     }
+//     console.log(finalSet.size);
+//   }
+//   // return total time
+//   return totalTime;
+// };
+
 const garbageCollection = (garbage, travel) => {
-  // track total time
-  // track the total time travelling
-  // iterate over houses (garbage)
-  // count the occurances of each type of trash at each house
-  // add travel time + occurance of trash for each type of trash to total
-  // return total time
-  return;
+  travel.push(0);
+
+  const truckTimes = {};
+  let travelTime = 0;
+  let collectionTime = 0;
+  for (let i = 0; i < garbage.length; i++) {
+    const house = garbage[i];
+    collectionTime += house.length;
+    for (const type of house) {
+      truckTimes[type] = travelTime;
+    }
+
+    travelTime += travel[i];
+  }
+
+  return (
+    Object.values(truckTimes).reduce((acc, cur) => acc + cur, 0) +
+    collectionTime
+  );
 };
 
 module.exports.garbageCollection = garbageCollection;
