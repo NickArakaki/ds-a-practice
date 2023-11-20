@@ -18,6 +18,12 @@
 */
 
 const garbageCollection = (garbage, travel) => {
+  // track total time
+  // track the total time travelling
+  // iterate over houses (garbage)
+  // count the occurances of each type of trash at each house
+  // add travel time + occurance of trash for each type of trash to total
+  // return total time
   return;
 };
 
