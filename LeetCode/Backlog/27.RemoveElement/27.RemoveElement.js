@@ -11,7 +11,8 @@ Return k.
 */
 
 const removeElement = (nums, val) => {
-  return nums.filter((num) => num != val);
+  nums = nums.filter((num) => num != val);
+  return nums;
 };
 
 module.exports.removeElement = removeElement;
