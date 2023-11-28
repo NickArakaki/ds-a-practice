@@ -11,6 +11,13 @@ Given an integer array nums, your goal is to make all elements in nums equal. To
 Return the number of operations to make all elements in nums equal.
 */
 
-const reductionOperations = (nums) => {};
+const reductionOperations = (nums) => {
+  // count number of each element in nums
+  // while couting determine the smallest number
+  // init res = 0
+  // iterate over count
+  // res +=  count * (num - smallestNum)
+  // return res
+};
 
 module.exports.reductionOperations = reductionOperations;
