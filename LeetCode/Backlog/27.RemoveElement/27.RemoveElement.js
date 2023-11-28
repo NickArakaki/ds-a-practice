@@ -10,9 +10,21 @@ The remaining elements of nums are not important as well as the size of nums.
 Return k.
 */
 
+// const removeElement = (nums, val) => {
+//   nums = nums.filter((num) => num !== val);
+//   return nums;
+// };
+
 const removeElement = (nums, val) => {
-  nums = nums.filter((num) => num != val);
-  return nums;
+  let replaceIdx = 0;
+  for (let i = 0; i < nums.length; ++i) {
+    if (nums[i] !== val) {
+      [nums[replaceIdx], nums[i]] = [nums[i], nums[replaceIdx]];
+      replaceIdx++;
+    }
+  }
+
+  return replaceIdx;
 };
 
 module.exports.removeElement = removeElement;
