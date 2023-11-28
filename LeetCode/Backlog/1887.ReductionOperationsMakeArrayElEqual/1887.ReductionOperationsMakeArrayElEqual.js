@@ -11,13 +11,43 @@ Given an integer array nums, your goal is to make all elements in nums equal. To
 Return the number of operations to make all elements in nums equal.
 */
 
+// const reductionOperations = (nums) => {
+//   // count number of each element in nums
+//   const count = {};
+//   smallestNum = Infinity;
+//   nums.forEach((num) => {
+//     if (!(num in count)) count[num] = 0;
+//     count[num]++;
+
+//     // while couting determine the smallest number
+//     if (num < smallestNum) smallestNum = num;
+//   });
+
+//   let res = 0;
+//   // iterate over count
+//   Object.keys(count).forEach((num) => {
+//     res += count[num] * (num - smallestNum);
+//   });
+//   // res +=  count * (num - smallestNum)
+//   // return res
+//   return res;
+// };
+
 const reductionOperations = (nums) => {
-  // count number of each element in nums
-  // while couting determine the smallest number
-  // init res = 0
-  // iterate over count
-  // res +=  count * (num - smallestNum)
-  // return res
+  // sort input in reverse
+  nums.sort((a, b) => b - a);
+  let operations = 0;
+  let prevUnique = nums[0];
+
+  for (let i = 1; i < nums.length; ++i) {
+    if (nums[i] === prevUnique) continue;
+
+    if (nums[i] < prevUnique) operations += i;
+
+    prevUnique = nums[i];
+  }
+
+  return operations;
 };
 
 module.exports.reductionOperations = reductionOperations;
