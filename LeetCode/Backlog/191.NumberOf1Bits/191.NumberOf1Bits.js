@@ -12,6 +12,13 @@ In Java, the compiler represents the signed integers using 2's complement notati
 in Example 3, the input represents the signed integer. -3.
 */
 
-const hammingWeight = (n) => {};
+const hammingWeight = (n) => {
+  n = n.toString();
+  count = 0;
+  for (let i = 0; i < n.length; ++i) {
+    if (n[i] === "1") count++;
+  }
+  return count;
+};
 
 module.exports.hammingWeight = hammingWeight;
