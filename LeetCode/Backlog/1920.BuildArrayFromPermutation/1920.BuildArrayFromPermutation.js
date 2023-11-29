@@ -5,6 +5,14 @@ ans of the same length where ans[i] = nums[nums[i]] for each 0 <= i < nums.lengt
 A zero-based permutation nums is an array of distinct integers from 0 to nums.length - 1 (inclusive).
 */
 
+// const buildArray = (nums) => {
+//   res = new Array(nums.length).fill(null);
+//   for (let i = 0; i < nums.length; ++i) {
+//     res[i] = nums[nums[i]];
+//   }
+//   return res;
+// };
+
 const buildArray = (nums) => {};
 
 module.exports.buildArray = buildArray;
