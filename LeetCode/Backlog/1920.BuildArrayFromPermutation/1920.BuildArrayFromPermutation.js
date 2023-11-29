@@ -13,6 +13,8 @@ A zero-based permutation nums is an array of distinct integers from 0 to nums.le
 //   return res;
 // };
 
-const buildArray = (nums) => {};
+const buildArray = (nums) => {
+  return nums.map((num, i) => nums[nums[i]]);
+};
 
 module.exports.buildArray = buildArray;
